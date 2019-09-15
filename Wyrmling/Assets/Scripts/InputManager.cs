@@ -5,13 +5,13 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
-
+    [Header("Inspector Variables")]
     [SerializeField] ControlBindings pcControls;
     [SerializeField] ControlBindings mobileControls;
 
     ControlBindings controls;
-
-    [HideInInspector] public Vector3 lastMousePosition;
+    [Header("Debugging variables, do not edit")]
+    public Vector3 lastMousePosition;
 
     private void Awake()
     {

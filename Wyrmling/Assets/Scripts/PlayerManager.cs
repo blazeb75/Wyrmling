@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    public Vector3 targetForward;
+    public UnityEvent OnFoodConsumed;
+    public UnityEvent OnPlayerGrown;
+
+    [Header("Components (assigned at runtime)")]
+    public Growth growth;
+    public Mouth mouth;
+
     public Vector3 headForward;
 
     private void Awake()
@@ -19,17 +26,8 @@ public class PlayerManager : MonoBehaviour
         {
             throw new System.Exception("Duplicate player manager found");
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        growth = GetComponentInChildren<Growth>();
+        mouth = GetComponentInChildren<Mouth>();
+    }    
 }
