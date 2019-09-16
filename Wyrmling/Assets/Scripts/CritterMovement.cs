@@ -39,25 +39,35 @@ public class CritterMovement : MonoBehaviour
             target = null;
     }
 
+    bool DecideBehaviour()
+    {
+        if (target != null)
+        {
+            //Decide whether to flee or chase
+            if (food.size > target.GetComponent<Growth>().foodConsumed)
+            {
+                StartCoroutine(Chase());
+                return true;
+            }
+            else
+            {
+                StartCoroutine(Flee());
+                return true;
+            }
+        }
+        return false;
+    }
+
     IEnumerator Ponder()
     {
         float time = 0;
         while (time < idleTime)
         {
-            time += Time.deltaTime;
-            if (target != null)
+            if (DecideBehaviour())
             {
-                //Decide whether to flee or chase
-                if (food.size > target.GetComponent<Growth>().foodConsumed)
-                {
-                    StartCoroutine(Chase());
-                }
-                else
-                {
-                    StartCoroutine(Flee());
-                }
                 yield break;
             }
+            time += Time.deltaTime;
             yield return null;   
         }
 
@@ -66,13 +76,16 @@ public class CritterMovement : MonoBehaviour
 
     IEnumerator Wander()
     {
+        Debug.Log("wandering");
         //Choose a random direction
-        Vector3 dir = Quaternion.Euler(0, 0, Random.Range(0f, 360f)).eulerAngles.normalized;
+        transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
+        Vector3 dir = transform.up;
         //Move in that direction
         float time = 0;
         while (time < wanderTime)
         {
             transform.Translate(dir * wanderSpeed * Time.deltaTime);
+            time += Time.deltaTime;
             yield return null;
         }
         StartCoroutine(Ponder());
@@ -80,22 +93,30 @@ public class CritterMovement : MonoBehaviour
 
     IEnumerator Chase()
     {
+        Debug.Log("chasing");
         //Chase the target for the set time
         float time = 0;
+        GameObject rememberedTarget = target;
         while(time < chaseTime)
         {
             //Get the vector to the target
-            Vector3 dir = target.transform.position - transform.position;
+            Vector3 dir = rememberedTarget.transform.position - transform.position;
             dir.Normalize();
             //Move in that direction
+            transform.up = dir;
             transform.Translate(dir * chaseSpeed * Time.deltaTime);
+            time += Time.deltaTime;
             yield return null;
         }
-        StartCoroutine(Wander());
+        if (!DecideBehaviour())
+        {
+            StartCoroutine(Ponder());
+        }
     }
 
     IEnumerator Flee()
     {
+        Debug.Log("fleeing");
         //Get a vector away from the target
         Vector3 dir = transform.position - target.transform.position;
         dir.Normalize();
@@ -107,10 +128,15 @@ public class CritterMovement : MonoBehaviour
         float time = 0;
         while(time < fleeTime)
         {
+            transform.up = dir;
             transform.Translate(dir * fleeSpeed * Time.deltaTime);
+            time += Time.deltaTime;
             yield return null;
         }
-        StartCoroutine(Ponder());
+        if (!DecideBehaviour())
+        {
+            StartCoroutine(Ponder());
+        }
     }
 
     

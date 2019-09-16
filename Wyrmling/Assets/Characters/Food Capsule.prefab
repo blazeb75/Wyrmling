@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 5272681988422489664}
   - component: {fileID: 1878023212200267885}
   - component: {fileID: 6955787223731734054}
+  - component: {fileID: 7525524179528794635}
   - component: {fileID: 8147264768993833363}
+  - component: {fileID: 4119184068551618301}
+  - component: {fileID: 7385417267026839566}
   m_Layer: 0
   m_Name: Food Capsule
   m_TagString: Untagged
@@ -94,6 +97,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &7525524179528794635
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5204728672442302078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8147264768993833363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,4 +123,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc51225fecb9014c82cdcbe080f264b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: Infinity
   foodValue: 10
+--- !u!114 &4119184068551618301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5204728672442302078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75038f0939248046be216dbf2ad5fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleTime: 1.2
+  wanderTime: 0.75
+  chaseTime: 4
+  fleeTime: 4
+  wanderSpeed: 4
+  chaseSpeed: 2.5
+  fleeSpeed: 2.5
+--- !u!114 &7385417267026839566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5204728672442302078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112a61ea4f579dd44a3f000b5db6f8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 100

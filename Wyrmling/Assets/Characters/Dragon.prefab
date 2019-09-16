@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570b09c860604a94ebb4159fece2ec5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biteSize: 5
+  biteDamage: 50
   state: 0
 --- !u!54 &5512546449556692292
 Rigidbody:
@@ -224,7 +226,6 @@ GameObject:
   - component: {fileID: 6668371565996361053}
   - component: {fileID: 6668371565996361054}
   - component: {fileID: 6668371565996361055}
-  - component: {fileID: 6668371565996361052}
   m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
@@ -292,20 +293,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &6668371565996361052
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6668371565996361026}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6668371566575714782
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,9 +307,10 @@ GameObject:
   - component: {fileID: 1239396244181861724}
   - component: {fileID: 9035116019280982818}
   - component: {fileID: 2800240766840509584}
+  - component: {fileID: 8509372343884942053}
   m_Layer: 8
   m_Name: Dragon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,6 +344,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d94e40fcd8462146afe987bbac244a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnFoodConsumed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPlayerGrown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   growth: {fileID: 0}
   mouth: {fileID: 0}
   headForward: {x: 0, y: 0, z: 0}
@@ -423,6 +421,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scalePerFoodValue: 0.025
   foodConsumed: 0
+--- !u!136 &8509372343884942053
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668371566575714782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8273127652200768152
 GameObject:
   m_ObjectHideFlags: 0
