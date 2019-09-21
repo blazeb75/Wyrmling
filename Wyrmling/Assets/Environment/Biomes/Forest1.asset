@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70ffa171888e8a343ad8f04d34a83643, type: 3}
-  m_Name: Lair
+  m_Name: Forest1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3404624587014030226, guid: 2f8b278d33948d24c9da00f4c118388e, type: 3}
+  prefab: {fileID: 9032865717158238449, guid: 74a3bd1ce077b304f9bcf6b1a713c524, type: 3}
   randomlyPlacedObjects:
-  - prefab: {fileID: 1899753066360985209, guid: 31d3ab3ab93d0f145842d7cdd85d7cd1,
+  - prefab: {fileID: 3431854537962333098, guid: 9c127b5a7d3352b4890c515f380e3e43,
       type: 3}
+    maxQuantity: 25
+  - prefab: {fileID: 906470371941209271, guid: 1e28c8260ed65604a94a359051b24f0b, type: 3}
     maxQuantity: 15
-  weight: 1
-  minDistance: 0
-  maxDistance: 0
+  weight: 2
+  minDistance: 1
+  maxDistance: 2147483647

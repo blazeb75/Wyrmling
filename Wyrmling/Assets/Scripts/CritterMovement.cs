@@ -76,7 +76,6 @@ public class CritterMovement : MonoBehaviour
 
     IEnumerator Wander()
     {
-        Debug.Log("wandering");
         //Choose a random direction
         transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
         Vector3 dir = transform.up;
@@ -93,7 +92,6 @@ public class CritterMovement : MonoBehaviour
 
     IEnumerator Chase()
     {
-        Debug.Log("chasing");
         //Chase the target for the set time
         float time = 0;
         GameObject rememberedTarget = target;
@@ -116,7 +114,6 @@ public class CritterMovement : MonoBehaviour
 
     IEnumerator Flee()
     {
-        Debug.Log("fleeing");
         //Get a vector away from the target
         Vector3 dir = transform.position - target.transform.position;
         dir.Normalize();

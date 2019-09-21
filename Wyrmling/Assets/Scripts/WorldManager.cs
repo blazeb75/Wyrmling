@@ -7,22 +7,25 @@ public class WorldManager : MonoBehaviour
     public static WorldManager instance;
 
     [SerializeField] Biome[] biomes;
-    [SerializeField] float biomeSize;
+    [SerializeField] float biomeSize = 50;
     [SerializeField] List<WorldTile> spawnedBiomes;
     [SerializeField] List<Vector2> visitedPositions;
 
     List<Biome> validBiomes;
+    List<float> weights;
 
     //WorldTile represents an environment in the world
     [System.Serializable]
     struct WorldTile
     {        
         public string name;
+        public Biome biome;
         public GameObject obj;
         public Vector2 position;
 
         public WorldTile(Biome biome, GameObject instance, Vector2 pos)
         {
+            this.biome = biome;
             name = biome.prefab.name;
             obj = instance;
             position = pos;
@@ -43,11 +46,13 @@ public class WorldManager : MonoBehaviour
 
         transform.position = new Vector3(0, 0, 0);
 
+        //Initialise lists
         validBiomes = new List<Biome>();
+        weights = new List<float>();
         spawnedBiomes = new List<WorldTile>();
-        visitedPositions = new List<Vector2>();
-        
+        visitedPositions = new List<Vector2>();        
     }
+
     private void Start()
     {
         SpawnBiome(new Vector2(0, 0));
@@ -102,56 +107,100 @@ public class WorldManager : MonoBehaviour
 
         //Spawn biomes
         foreach(Vector2 pos in positions)
-        {
+        {            
             SpawnBiome(pos);
         }
     }
     
-    Biome SpawnBiome(Vector2 position)
+    void SpawnBiome(Vector2 position)
     {
+        Debug.Log("Spawning biome at " + position);
         validBiomes.Clear();
+        weights.Clear();
         foreach(Biome biome in biomes)
         {
-            if(biome.minDistance >= position.magnitude && biome.maxDistance <= position.magnitude)
+            if(biome.minDistance <= position.magnitude && biome.maxDistance >= position.magnitude)
             {
                 validBiomes.Add(biome);
+                weights.Add(biome.weight);
             }
         }
 
         //Spawn a biome
-        Vector3 pos = new Vector3(position.x, position.y, 1);
-        Biome newBiome = GetRandomWeightedBiome();
+        Vector3 pos = new Vector3(position.x * biomeSize, position.y * biomeSize, 0);
+        int index = GetRandomWeightedIndex(weights.ToArray());
+        Debug.Log(index);
+        Biome newBiome = validBiomes[index];
         WorldTile newTile = new WorldTile(
             newBiome,
             Instantiate(newBiome.prefab, pos, newBiome.prefab.transform.rotation, transform),
             pos
             );
+
+        //Add the tile to the list of existing tiles
         spawnedBiomes.Add(newTile);
-        return newBiome;
+
+        //Generate terrain
+        GenerateEnvironmtentalObjects(newTile);
     }
 
-    Biome GetRandomWeightedBiome()
+    float[] GetWeightArray(Biome[] objects)
+    {
+        float[] weights = new float[objects.Length];
+        for (int i = 0; i < objects.Length; i++)
+        {
+            weights[i] = objects[i].weight;
+        }
+        return weights;
+    }
+
+    int GetRandomWeightedIndex(float[] weights)
     {
         float weightedSum = 0f;
-        foreach (Biome biome in validBiomes)
+        foreach (float weight in weights)
         {
-            weightedSum += biome.weight;
+            weightedSum += weight;
         }
 
         int index = 0;
-        while(index < validBiomes.Count - 1)
+        while(index < weights.Length - 1)
         {
-            if(Random.Range(0,weightedSum) < validBiomes[index].weight)
+            if(Random.Range(0, weightedSum) < weights[index])
             {
-                return validBiomes[index];
+                return index;
             }
             else
             {
-                weightedSum -= validBiomes[index].weight;
+                weightedSum -= weights[index++];
             }
         }
+        
+        return index;
+    }
 
-        //There is only one item left; return it
-        return validBiomes[0];
+    void GenerateEnvironmtentalObjects(WorldTile tile)
+    {
+        List<Collider2D> results = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.NoFilter();
+        //For each specified asset, spawn it the specified number of times
+        foreach (Biome.EnvironmentalObject asset in tile.biome.randomlyPlacedObjects)
+        {
+            for (int i = 1; i <= asset.maxQuantity; i++)
+            {
+                Vector3 position = new Vector3(Random.Range(-biomeSize/2f, biomeSize/2f), Random.Range(-biomeSize / 2f, biomeSize / 2f), 0);
+                position += tile.obj.transform.position;
+                GameObject newObj = Instantiate(asset.prefab, position, asset.prefab.transform.rotation, tile.obj.transform);
+
+                //Make sure it isn't overlapping. If it is, destroy it
+                if(newObj.TryGetComponent(out Collider2D collider))
+                {                    
+                    if (collider.OverlapCollider(filter, results) > 0)
+                    {
+                        Destroy(newObj);
+                    }
+                }
+            }
+        }
     }
 }
