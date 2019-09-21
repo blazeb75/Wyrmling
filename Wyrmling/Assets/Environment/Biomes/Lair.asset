@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ffa171888e8a343ad8f04d34a83643, type: 3}
+  m_Name: Lair
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3404624587014030226, guid: 2f8b278d33948d24c9da00f4c118388e, type: 3}
+  weight: 1
+  minDistance: 0
+  maxDistance: 0
