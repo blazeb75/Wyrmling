@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Food))]
-[RequireComponent(typeof(Collider))]
 public class CritterMovement : MonoBehaviour
 {
     public float idleTime = 3;
