@@ -78,11 +78,12 @@ public class CritterMovement : MonoBehaviour
         //Choose a random direction
         transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
         Vector3 dir = transform.up;
+        Debug.Log(transform.up);
         //Move in that direction
         float time = 0;
         while (time < wanderTime)
         {
-            transform.Translate(dir * wanderSpeed * Time.deltaTime);
+            transform.Translate(transform.up * wanderSpeed * Time.deltaTime, Space.World);
             time += Time.deltaTime;
             yield return null;
         }

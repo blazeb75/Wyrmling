@@ -194,8 +194,22 @@ public class WorldManager : MonoBehaviour
 
                 //Make sure it isn't overlapping. If it is, destroy it
                 if(newObj.TryGetComponent(out Collider2D collider))
-                {                    
-                    if (collider.OverlapCollider(filter, results) > 0)
+                {
+                    collider.OverlapCollider(filter, results);
+                    //Ignore colliders that belong to the same object
+                    List<int> ignoredResults = new List<int>();
+                    foreach(Collider2D col in results)
+                    {
+                        if (col.gameObject == collider.gameObject)
+                            ignoredResults.Add(results.IndexOf(col));
+                    }
+                    foreach(int index in ignoredResults)
+                    {
+                        results.RemoveAt(index);
+                    }
+                    ignoredResults.Clear();
+                    //If there's an overlapping collider, undo the spawn
+                    if (results.Count > 0)
                     {
                         Destroy(newObj);
                     }
