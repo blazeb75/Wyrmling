@@ -27,12 +27,12 @@ public class CritterMovement : MonoBehaviour
     }
 
     //The trigger collider represents the creature's perceptable area
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
             target = other.gameObject;
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject == target)
             target = null;
@@ -77,8 +77,6 @@ public class CritterMovement : MonoBehaviour
     {
         //Choose a random direction
         transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
-        Vector3 dir = transform.up;
-        Debug.Log(transform.up);
         //Move in that direction
         float time = 0;
         while (time < wanderTime)

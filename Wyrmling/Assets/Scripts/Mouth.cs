@@ -21,7 +21,7 @@ public class Mouth : MonoBehaviour
         PlayerManager.instance.OnPlayerGrown.AddListener(UpdateBiteSize);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         //Temporary control:
         if (Input.GetMouseButtonDown(1))
