@@ -7,6 +7,9 @@ public class HeadControl : MonoBehaviour
     [SerializeField] float rotationSpeed;
     Vector3 rotationLastFrame;
 
+    public enum LookMode { Lock, Free}
+    public LookMode lookMode = LookMode.Lock;
+
     // Update is called once per frame
     void Update()
     {
@@ -18,9 +21,20 @@ public class HeadControl : MonoBehaviour
     //Look towards the cursor position
     void RotateTowardsMouse()
     {
+        //Get the position to look at, depending on settings
+        Vector3 targetPos = new Vector3();
+        if(lookMode == LookMode.Free)
+        {
+            targetPos = Mouse.Position;
+        }
+        else if (lookMode == LookMode.Lock)
+        {
+            targetPos = PlayerManager.instance.TargetPosition;
+        }
+
         float rotationThisFrame = rotationSpeed * Time.deltaTime;
         //Adjust speed according to distance
-        float distanceToMouse = Vector3.SignedAngle(transform.up, Mouse.Position() - transform.position, transform.forward);        
+        float distanceToMouse = Vector3.SignedAngle(transform.up, targetPos - transform.position, transform.forward);        
         //Ensure the rotation is negative if appropriate
         if (distanceToMouse < 0) rotationThisFrame *= -1;
         //Prevent overshooting

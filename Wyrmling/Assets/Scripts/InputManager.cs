@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
 
     ControlBindings controls;
     [Header("Debugging variables, do not edit")]
-    public Vector3 lastMousePosition = new Vector3(0, 5, 0);
+    public Vector3 lastMousePosition;
 
     private void Awake()
     {
@@ -34,13 +34,17 @@ public class InputManager : MonoBehaviour
             controls = pcControls;
         }
     }
+    private void Start()
+    {
+        lastMousePosition = PlayerManager.instance.transform.Find("Nose").transform.position;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(controls.press))
         {
-                lastMousePosition = Mouse.Position();            
+            lastMousePosition = Mouse.Position;
         }
     }
     
@@ -48,5 +52,13 @@ public class InputManager : MonoBehaviour
     public bool GetKey(string key)
     {
         return Input.GetKey((KeyCode)controls.GetType().GetField(key).GetValue(controls));
+    }
+    public bool GetKeyDown(string key)
+    {
+        return Input.GetKeyDown((KeyCode)controls.GetType().GetField(key).GetValue(controls));
+    }
+    public bool GetKeyUp(string key)
+    {
+        return Input.GetKeyUp((KeyCode)controls.GetType().GetField(key).GetValue(controls));
     }
 }

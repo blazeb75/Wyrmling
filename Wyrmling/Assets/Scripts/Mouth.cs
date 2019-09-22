@@ -6,38 +6,113 @@ public class Mouth : MonoBehaviour
 {
     public enum MouthState {Idle, Biting, Firebreathing};
 
+    [SerializeField] GameObject fireParticle;
+
     //The amount of food that can be eaten in one bite
     public float biteSize = 5;
     public float biteDamage = 50;
+    public float biteInterval = 1f;
     public MouthState state = MouthState.Idle;
 
+    private List<GameObject> presentTargets;
     private float baseBiteSize;
     private float baseBiteDamage;
+
+    private void Awake()
+    {
+        //Initialise list
+        presentTargets = new List<GameObject>();
+    }
 
     private void Start()
     {
         baseBiteSize = biteSize;
         baseBiteDamage = biteDamage;
         PlayerManager.instance.OnPlayerGrown.AddListener(UpdateBiteSize);
+
+        StartCoroutine(Biting());
+        StartCoroutine(BreatheFire());
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-        Debug.Log("Hello world!");
-        //Temporary control:
-        if (Input.GetMouseButtonDown(1))
-            if (state == MouthState.Biting)
+        if (PlayerManager.instance.target != null)
+        {
+            if (Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 2f)
             {
-                if (other.TryGetComponent(out Health health))
+                state = MouthState.Biting;
+            }
+            else
+            {
+                state = MouthState.Firebreathing;
+            }
+        }
+        else
+        {
+            state = MouthState.Idle;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        presentTargets.Add(collision.gameObject);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (presentTargets.Contains(collision.gameObject))
+            presentTargets.Remove(collision.gameObject);
+    }
+
+    public void Bite()
+    {
+        foreach(GameObject target in presentTargets)
+        {
+            if (target.TryGetComponent(out Health health))
+            {
+                health.Damage(biteDamage);
+            }
+
+            else if (target.gameObject.TryGetComponent(out Food food))
+            {
+                Eat(food);
+            }
+        }
+    }
+
+    IEnumerator Biting()
+    {
+        while (true)
+        {
+            while (state == MouthState.Biting)
+            {
+                yield return new WaitForSeconds(biteInterval);
+                Bite();
+            }
+            yield return null;
+        }
+       
+    }
+
+    IEnumerator BreatheFire()
+    {
+        while (true)
+        {
+            while (Input.GetMouseButton(2) || state == MouthState.Firebreathing)
+            {
+                //Only breathe fire if the target is alive
+                if (PlayerManager.instance.target != null && !PlayerManager.instance.target.TryGetComponent(out Health health))
                 {
-                    health.Damage(biteDamage);
+                    yield break;
                 }
 
-                else if (other.gameObject.TryGetComponent(out Food food))
-                {
-                    Eat(food);
-                }
+                //Create a flame particle
+                GameObject flame = Instantiate(fireParticle, transform.position, transform.rotation);
+                //Randomise its trajectory
+                flame.transform.Rotate(0, 0, Random.Range(-10f, 10f));
+                yield return new WaitForSeconds(0.05f);
             }
+            yield return null;
+        }
     }
 
     void Eat(Food food)

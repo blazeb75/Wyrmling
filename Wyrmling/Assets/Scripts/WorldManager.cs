@@ -129,7 +129,7 @@ public class WorldManager : MonoBehaviour
         //Spawn a biome
         Vector3 pos = new Vector3(position.x * biomeSize, position.y * biomeSize, 0);
         int index = GetRandomWeightedIndex(weights.ToArray());
-        Debug.Log(index);
+
         Biome newBiome = validBiomes[index];
         WorldTile newTile = new WorldTile(
             newBiome,

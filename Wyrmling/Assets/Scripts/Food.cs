@@ -19,7 +19,7 @@ public class Food : MonoBehaviour
     public virtual void Consume()
     {
         PlayerManager.instance.OnFoodConsumed.Invoke();
-        Destroy(gameObject);
+        Destroy(gameObject, 0.001f);
     }
 
     public virtual void Bite(float amount)

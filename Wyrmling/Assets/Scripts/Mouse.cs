@@ -5,10 +5,13 @@ using UnityEngine;
 public static class Mouse
 {
     //TODO mobile support
-    public static Vector3 Position()
+    public static Vector3 Position
     {
-        Vector3 pos = Input.mousePosition;
-        pos.z = 10;
-        return Camera.main.ScreenToWorldPoint(pos);
+        get
+        {
+            Vector3 pos = Input.mousePosition;
+            pos.z = Camera.main.transform.position.z * -1f;
+            return Camera.main.ScreenToWorldPoint(pos);
+        }
     }
 }

@@ -29,17 +29,15 @@ public class Movement : MonoBehaviour
     void Update()
     {
         RotateTowardsMouse();
-        if (InputManager.instance.GetKey("press"))
-        {
-            MoveTowardsHeadForward();
-        }        
+        MoveTowardsHeadForward();
+              
     }
 
     void RotateTowardsMouse()
     {        
         currentRotationSpeed = rotationSpeed * Time.deltaTime;
         //Reduce speed if the remaining angle is small
-        float angleToMouse = Vector3.SignedAngle(transform.up, InputManager.instance.lastMousePosition - transform.position, transform.forward);
+        float angleToMouse = Vector3.SignedAngle(transform.up, PlayerManager.instance.TargetPosition - transform.position, transform.forward);
         if (Mathf.Abs(angleToMouse) < stoppingRotationDistance)
         {
             currentRotationSpeed *= angleToMouse / stoppingRotationDistance;
@@ -50,7 +48,7 @@ public class Movement : MonoBehaviour
         //Increase rotation speed if distance is small TODO
         //float distance = Vector3.Distance(nose.transform.position, InputManager.instance.lastMousePosition);
         //Ensure the rotation is negative if appropriate
-        else if (angleToMouse < 0) currentRotationSpeed *= -1;
+        else if (angleToMouse < 0) currentRotationSpeed *= -1f;
         //Actually rotate
         transform.Rotate(0,0,currentRotationSpeed);
     }
@@ -58,16 +56,24 @@ public class Movement : MonoBehaviour
     void MoveTowardsHeadForward()
     {
         currentSpeed = moveSpeed * Time.deltaTime;
-        //If close to target, slow down to stop
-        float distance = Vector3.Distance(nose.transform.position, InputManager.instance.lastMousePosition);
-        if (distance < stoppingDistance)
+        Vector3 direction = PlayerManager.instance.headForward;
+        //If the target is behind the nose, reverse towards it
+        if(Vector3.Distance(transform.position, PlayerManager.instance.TargetPosition) < Vector3.Distance(transform.position, nose.transform.position))
         {
-            currentSpeed *= distance / stoppingDistance;
+            currentSpeed *= -0.5f;
+            direction = transform.up;
+        }
+
+        //If close to target, slow down to stop
+        float noseDistance = Vector3.Distance(nose.transform.position, PlayerManager.instance.TargetPosition);
+        if (noseDistance < stoppingDistance)
+        {
+            currentSpeed *= noseDistance / stoppingDistance;
             //Sleep if very close
-            if (distance < 0.1f) return;
+            if (noseDistance < 0.5f) return;
         }
         //Actually move
-        transform.Translate(PlayerManager.instance.headForward * currentSpeed,Space.World);
+        transform.Translate(direction * currentSpeed, Space.World);
         //body.MovePosition(transform.position + PlayerManager.instance.headForward * currentSpeed);
         //transform.Translate((InputManager.instance.lastMousePosition - nose.transform.position).normalized * currentSpeed);
         //transform.position = Vector3.MoveTowards(transform.position, InputManager.instance.lastMousePosition,currentSpeed);
