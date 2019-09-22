@@ -23,6 +23,7 @@ public class Mouth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Hello world!");
         //Temporary control:
         if (Input.GetMouseButtonDown(1))
             if (state == MouthState.Biting)

@@ -342,5 +342,20 @@ PrefabInstance:
       propertyPath: state
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6668371564943480864, guid: d7c7f146ba0a27f4fbe71f86c8463c1e,
+        type: 3}
+      propertyPath: m_Name
+      value: NeckBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252199069093780882, guid: d7c7f146ba0a27f4fbe71f86c8463c1e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 470666668883424884, guid: d7c7f146ba0a27f4fbe71f86c8463c1e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7c7f146ba0a27f4fbe71f86c8463c1e, type: 3}

@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
 
     ControlBindings controls;
     [Header("Debugging variables, do not edit")]
-    public Vector3 lastMousePosition;
+    public Vector3 lastMousePosition = new Vector3(0, 5, 0);
 
     private void Awake()
     {

@@ -39,18 +39,18 @@ public class Movement : MonoBehaviour
     {        
         currentRotationSpeed = rotationSpeed * Time.deltaTime;
         //Reduce speed if the remaining angle is small
-        float angleToMouse = Vector3.SignedAngle(transform.up, InputManager.instance.lastMousePosition - nose.transform.position, transform.forward);
+        float angleToMouse = Vector3.SignedAngle(transform.up, InputManager.instance.lastMousePosition - transform.position, transform.forward);
         if (Mathf.Abs(angleToMouse) < stoppingRotationDistance)
         {
             currentRotationSpeed *= angleToMouse / stoppingRotationDistance;
-            currentRotationSpeed += 1;
+            //currentRotationSpeed += 1;
             //Sleep if very close TODO make this work
-            if (Mathf.Abs(angleToMouse) < 0.01f) return;
+            //if (Mathf.Abs(angleToMouse) < 1f) return;
         }        
         //Increase rotation speed if distance is small TODO
         //float distance = Vector3.Distance(nose.transform.position, InputManager.instance.lastMousePosition);
         //Ensure the rotation is negative if appropriate
-        if (angleToMouse < 0) currentRotationSpeed *= -1;
+        else if (angleToMouse < 0) currentRotationSpeed *= -1;
         //Actually rotate
         transform.Rotate(0,0,currentRotationSpeed);
     }
