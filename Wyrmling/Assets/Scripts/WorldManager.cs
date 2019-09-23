@@ -76,8 +76,8 @@ public class WorldManager : MonoBehaviour
     Vector2 GetPlayerPosition()
     {
         Vector2 playerPos = PlayerManager.instance.transform.position;
-        playerPos.x = Mathf.Floor(playerPos.x / biomeSize);
-        playerPos.y = Mathf.Floor(playerPos.y / biomeSize);
+        playerPos.x = Mathf.Round(playerPos.x / biomeSize);
+        playerPos.y = Mathf.Round(playerPos.y / biomeSize);
         return playerPos;
     }
 
@@ -134,7 +134,7 @@ public class WorldManager : MonoBehaviour
         WorldTile newTile = new WorldTile(
             newBiome,
             Instantiate(newBiome.prefab, pos, newBiome.prefab.transform.rotation, transform),
-            pos
+            position
             );
 
         //Add the tile to the list of existing tiles

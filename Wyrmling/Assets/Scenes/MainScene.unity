@@ -262,6 +262,7 @@ MonoBehaviour:
   biomes:
   - {fileID: 11400000, guid: 3966bfb7efc016e4cb6cea749b5eb3ca, type: 2}
   - {fileID: 11400000, guid: a5411818bfa60d241826feb04ba30c4a, type: 2}
+  - {fileID: 11400000, guid: 8c016b74505d6ae4094ab755bc655f2a, type: 2}
   biomeSize: 50
   spawnedBiomes: []
   visitedPositions: []

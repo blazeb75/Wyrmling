@@ -38,7 +38,7 @@ public class Mouth : MonoBehaviour
     {
         if (PlayerManager.instance.target != null)
         {
-            if (Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 1f)
+            if (Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 0.6f)
             {
                 state = MouthState.Biting;
             }
