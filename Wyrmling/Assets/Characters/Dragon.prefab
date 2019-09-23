@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 2800240766840509584}
   - component: {fileID: 470666668883424884}
   - component: {fileID: 7605752816660503784}
-  - component: {fileID: 112860937529141820}
+  - component: {fileID: 4108421629428234396}
   m_Layer: 8
   m_Name: Dragon
   m_TagString: Player
@@ -431,8 +431,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &112860937529141820
-PolygonCollider2D:
+--- !u!61 &4108421629428234396
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -444,7 +444,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000011920929, y: 1.1134082}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -454,15 +454,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.23572789, y: 0.3898306}
-      - {x: 0.50333023, y: 1.0387114}
-      - {x: 0.27528527, y: 1.5243405}
-      - {x: -0.011307299, y: 1.8637564}
-      - {x: -0.28641728, y: 1.5354724}
-      - {x: -0.50551045, y: 1.0589693}
-      - {x: -0.23974231, y: 0.39320105}
+  serializedVersion: 2
+  m_Size: {x: 0.43596816, y: 1.4778531}
+  m_EdgeRadius: 0
 --- !u!1 &8273127652200768152
 GameObject:
   m_ObjectHideFlags: 0
