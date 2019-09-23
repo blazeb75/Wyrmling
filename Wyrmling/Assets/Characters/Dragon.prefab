@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1907931133225440414}
   - component: {fileID: 3868994612947485274}
   - component: {fileID: 3119214298201889878}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,6 +82,7 @@ MonoBehaviour:
   biteDamage: 50
   biteInterval: 1
   state: 0
+  presentTargets: []
 --- !u!58 &3868994612947485274
 CircleCollider2D:
   m_ObjectHideFlags: 0

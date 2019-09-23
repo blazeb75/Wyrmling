@@ -14,7 +14,7 @@ public class Mouth : MonoBehaviour
     public float biteInterval = 1f;
     public MouthState state = MouthState.Idle;
 
-    private List<GameObject> presentTargets;
+    public List<GameObject> presentTargets;
     private float baseBiteSize;
     private float baseBiteDamage;
 
@@ -38,7 +38,7 @@ public class Mouth : MonoBehaviour
     {
         if (PlayerManager.instance.target != null)
         {
-            if (Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 2f)
+            if (Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 1f)
             {
                 state = MouthState.Biting;
             }
@@ -67,14 +67,17 @@ public class Mouth : MonoBehaviour
     {
         foreach(GameObject target in presentTargets)
         {
-            if (target.TryGetComponent(out Health health))
+            if (target != null)
             {
-                health.Damage(biteDamage);
-            }
+                if (target.TryGetComponent(out Health health))
+                {
+                    health.Damage(biteDamage);
+                }
 
-            else if (target.gameObject.TryGetComponent(out Food food))
-            {
-                Eat(food);
+                else if (target.gameObject.TryGetComponent(out Food food))
+                {
+                    Eat(food);
+                }
             }
         }
     }
@@ -97,14 +100,11 @@ public class Mouth : MonoBehaviour
     {
         while (true)
         {
-            while (Input.GetMouseButton(2) || state == MouthState.Firebreathing)
-            {
+            while (Input.GetMouseButton(2) || (state == MouthState.Firebreathing
                 //Only breathe fire if the target is alive
-                if (PlayerManager.instance.target != null && !PlayerManager.instance.target.TryGetComponent(out Health health))
+                && PlayerManager.instance.target != null
+                && PlayerManager.instance.target.TryGetComponent(out Health health)))
                 {
-                    yield break;
-                }
-
                 //Create a flame particle
                 GameObject flame = Instantiate(fireParticle, transform.position, transform.rotation);
                 //Randomise its trajectory

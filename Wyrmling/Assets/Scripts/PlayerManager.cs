@@ -65,7 +65,6 @@ public class PlayerManager : MonoBehaviour
             //Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, layerMask);
             if (hit.collider != null)
             {
-                Debug.Log("Hit");
                 target = hit.collider.gameObject;
                 return;
             }

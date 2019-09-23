@@ -37,7 +37,7 @@ public class CameraMovement : MonoBehaviour
     {
         float scale = PlayerManager.instance.transform.localScale.x;
         float oldZ = transform.position.z;
-        float newZ = previousZ + scale - 1;
+        float newZ = previousZ - (scale - 1);
         float time = 0;
         //Set previous Z, so that new instances of this coroutine use the correct base z value
         previousZ = newZ;

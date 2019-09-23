@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 9032865717158238449, guid: 74a3bd1ce077b304f9bcf6b1a713c524, type: 3}
   randomlyPlacedObjects:
+  - prefab: {fileID: 910335103312351999, guid: ded0c74d41bc1124d8d08b7c86ec49ed, type: 3}
+    maxQuantity: 5
   - prefab: {fileID: 3431854537962333098, guid: 9c127b5a7d3352b4890c515f380e3e43,
       type: 3}
     maxQuantity: 25

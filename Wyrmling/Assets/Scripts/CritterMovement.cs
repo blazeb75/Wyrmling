@@ -100,7 +100,7 @@ public class CritterMovement : MonoBehaviour
             dir.Normalize();
             //Move in that direction
             transform.up = dir;
-            transform.Translate(dir * chaseSpeed * Time.deltaTime);
+            transform.Translate(dir * chaseSpeed * Time.deltaTime, Space.World);
             time += Time.deltaTime;
             yield return null;
         }
@@ -124,7 +124,7 @@ public class CritterMovement : MonoBehaviour
         while(time < fleeTime)
         {
             transform.up = dir;
-            transform.Translate(dir * fleeSpeed * Time.deltaTime);
+            transform.Translate(dir * fleeSpeed * Time.deltaTime, Space.World);
             time += Time.deltaTime;
             yield return null;
         }

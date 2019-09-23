@@ -19,6 +19,7 @@ public class Food : MonoBehaviour
     public virtual void Consume()
     {
         PlayerManager.instance.OnFoodConsumed.Invoke();
+        gameObject.SetActive(false);
         Destroy(gameObject, 0.001f);
     }
 
