@@ -16,18 +16,20 @@ public class Food : MonoBehaviour
         startFoodValue = foodValue;
     }
 
-    public virtual void Consume()
+    public virtual IEnumerator Consume()
     {
         PlayerManager.instance.OnFoodConsumed.Invoke();
+        yield return new WaitForEndOfFrame();
         gameObject.SetActive(false);
-        Destroy(gameObject, 0.001f);
+        yield return null;
+        Destroy(gameObject);
     }
 
     public virtual void Bite(float amount)
     {
         foodValue -= amount;
         if (foodValue <= 0)
-            Consume();
+            StartCoroutine(Consume());
         else
         {
             Vector3 newScale = transform.localScale;

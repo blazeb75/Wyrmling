@@ -17,12 +17,25 @@ public class CritterMovement : MonoBehaviour
 
     GameObject target;
 
-    Food food;    
+    Food food;
+
+    Collider2D col;
+    List<RaycastHit2D> hits;
+    ContactFilter2D collisionFilter;
+
+    private void Awake()
+    {
+        food = GetComponent<Food>();
+
+        col = GetComponent<Collider2D>();
+        collisionFilter.layerMask = LayerMask.GetMask("Environment", "Player");
+        //Initialise list
+        hits = new List<RaycastHit2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
-    {
-        food = GetComponent<Food>();
+    {        
         StartCoroutine(Ponder());
     }
 
@@ -79,7 +92,9 @@ public class CritterMovement : MonoBehaviour
         transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
         //Move in that direction
         float time = 0;
-        while (time < wanderTime)
+        //Wander for the duration or until you hit a wall
+        while (time < wanderTime
+            && col.Cast(transform.up, collisionFilter, hits, wanderSpeed) == 0)
         {
             transform.Translate(transform.up * wanderSpeed * Time.deltaTime, Space.World);
             time += Time.deltaTime;
@@ -93,7 +108,8 @@ public class CritterMovement : MonoBehaviour
         //Chase the target for the set time
         float time = 0;
         GameObject rememberedTarget = target;
-        while(time < chaseTime)
+        while(time < chaseTime
+            && col.Cast(transform.up, collisionFilter, hits, chaseSpeed) == 0)
         {
             //Get the vector to the target
             Vector3 dir = rememberedTarget.transform.position - transform.position;

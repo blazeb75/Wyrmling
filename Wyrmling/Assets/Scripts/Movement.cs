@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
 {
     [Header("Inspector variables")]
@@ -16,13 +15,16 @@ public class Movement : MonoBehaviour
     public float currentSpeed;
     public float currentRotationSpeed;
 
-    Rigidbody body;
-    CharacterController controller;
+    Collider2D col;
+    List<RaycastHit2D> hits;
+    ContactFilter2D collisionFilter;
 
     private void Awake()
     {
-        body = GetComponent<Rigidbody>();
-        //controller = GetComponent<CharacterController>();
+        col = GetComponent<Collider2D>();
+        collisionFilter.layerMask = LayerMask.GetMask("Environment", "Creature");
+        //Initialise list
+        hits = new List<RaycastHit2D>();
     }
 
     // Update is called once per frame
@@ -72,11 +74,13 @@ public class Movement : MonoBehaviour
             //Sleep if very close
             if (noseDistance < 0.5f) return;
         }
+        //Check collision       
+        if (col.Cast(direction, collisionFilter, hits, currentSpeed) != 0)
+        {
+            return;
+        }
+
         //Actually move
         transform.Translate(direction * currentSpeed, Space.World);
-        //body.MovePosition(transform.position + PlayerManager.instance.headForward * currentSpeed);
-        //transform.Translate((InputManager.instance.lastMousePosition - nose.transform.position).normalized * currentSpeed);
-        //transform.position = Vector3.MoveTowards(transform.position, InputManager.instance.lastMousePosition,currentSpeed);
-        //controller.Move(PlayerManager.instance.headForward * currentSpeed);
     }
 }

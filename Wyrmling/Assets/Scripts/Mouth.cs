@@ -64,11 +64,11 @@ public class Mouth : MonoBehaviour
     }
 
     public void Bite()
-    {
+    {        
         foreach(GameObject target in presentTargets)
         {
             if (target != null)
-            {
+            {                
                 if (target.TryGetComponent(out Health health))
                 {
                     health.Damage(biteDamage);
@@ -118,16 +118,16 @@ public class Mouth : MonoBehaviour
     void Eat(Food food)
     {
         //If the player is big enough to eat the food whole, do so
-        if (PlayerManager.instance.growth.foodConsumed > food.size)
-        {
-            PlayerManager.instance.growth.foodConsumed += food.foodValue;
-            food.Consume();
-        }
-        else
-        {
+        //if (PlayerManager.instance.growth.foodConsumed > food.size)
+        //{
+        //    PlayerManager.instance.growth.foodConsumed += food.foodValue;
+        //    food.Consume();
+        //}
+        //else
+        //{        
             PlayerManager.instance.growth.foodConsumed += Mathf.Min(food.foodValue, biteSize);
             food.Bite(biteSize);
-        }
+        //}
     }
 
     public void UpdateBiteSize()

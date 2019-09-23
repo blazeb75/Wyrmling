@@ -64,13 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75038f0939248046be216dbf2ad5fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 1.2
-  wanderTime: 0.75
-  chaseTime: 4
-  fleeTime: 4
-  wanderSpeed: 0.5
-  chaseSpeed: 0
-  fleeSpeed: 2.5
+  idleTime: 0.65
+  wanderTime: 0.9
+  chaseTime: 3
+  fleeTime: 3
+  wanderSpeed: 3.5
+  chaseSpeed: 4.5
+  fleeSpeed: 4.5
 --- !u!114 &2929352258343064822
 MonoBehaviour:
   m_ObjectHideFlags: 0
