@@ -22,7 +22,8 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         col = GetComponent<Collider2D>();
-        collisionFilter.layerMask = LayerMask.GetMask("Environment", "Creature");
+        collisionFilter.ClearNormalAngle();
+        collisionFilter.layerMask = LayerMask.GetMask("Environment");
         //Initialise list
         hits = new List<RaycastHit2D>();
     }
@@ -31,8 +32,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         RotateTowardsMouse();
-        MoveTowardsHeadForward();
-              
+        MoveTowardsHeadForward();              
     }
 
     void RotateTowardsMouse()
@@ -72,12 +72,12 @@ public class Movement : MonoBehaviour
         {
             currentSpeed *= noseDistance / stoppingDistance;
             //Sleep if very close
-            if (noseDistance < 0.5f) return;
+            if (noseDistance < 0.05f) return;
         }
         //Check collision       
         if (col.Cast(direction, collisionFilter, hits, currentSpeed) != 0)
         {
-            return;
+            //return;
         }
 
         //Actually move

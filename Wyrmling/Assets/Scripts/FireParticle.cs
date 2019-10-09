@@ -30,7 +30,13 @@ public class FireParticle : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
-        Destroy(this.gameObject);
+        Destroy(GetComponent<Collider2D>());
+        StartCoroutine(DestroyAfterDelay());
+    }
 
+    IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(0.15f);
+        Destroy(this.gameObject);
     }
 }

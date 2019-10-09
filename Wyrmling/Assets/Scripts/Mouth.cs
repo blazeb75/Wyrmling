@@ -38,7 +38,8 @@ public class Mouth : MonoBehaviour
     {
         if (PlayerManager.instance.target != null)
         {
-            if (Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 0.6f)
+            if (presentTargets.Count > 0
+                || Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 0.6f)
             {
                 state = MouthState.Biting;
             }
@@ -100,10 +101,10 @@ public class Mouth : MonoBehaviour
     {
         while (true)
         {
-            while (Input.GetMouseButton(2) || (state == MouthState.Firebreathing
+            while (Input.GetMouseButton(2) 
+                || (state == MouthState.Firebreathing
                 //Only breathe fire if the target is alive
-                && PlayerManager.instance.target != null
-                && PlayerManager.instance.target.TryGetComponent(out Health health)))
+                && PlayerManager.instance.target != null))
                 {
                 //Create a flame particle
                 GameObject flame = Instantiate(fireParticle, transform.position, transform.rotation);

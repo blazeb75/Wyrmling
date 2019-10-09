@@ -10,10 +10,13 @@ public class PlayerManager : MonoBehaviour
     public UnityEvent OnFoodConsumed;
     public UnityEvent OnPlayerGrown;
 
+    [Header("Objects - Assign in inspector")]
+    public GameObject nose;
+
     [Header("Components (assigned at runtime)")]
     public Growth growth;
     public Mouth mouth;
-    public GameObject nose;
+    public Movement movement;
 
     [Header("Dynamic references")]
     public Vector3 headForward;
@@ -47,7 +50,7 @@ public class PlayerManager : MonoBehaviour
 
         growth = GetComponentInChildren<Growth>();
         mouth = GetComponentInChildren<Mouth>();
-        nose = transform.Find("Nose").gameObject;
+        movement = GetComponent<Movement>();
     }
 
     private void Update()
