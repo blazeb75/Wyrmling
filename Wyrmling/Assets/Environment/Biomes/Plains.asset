@@ -16,12 +16,12 @@ MonoBehaviour:
   randomlyPlacedObjects:
   - prefab: {fileID: 8047629834127572615, guid: 6b18e508662eceb43aa9dd783de043aa,
       type: 3}
-    maxQuantity: 4
+    maxQuantity: 3
   - prefab: {fileID: 5159858820536120278, guid: cc2a505d201b7914385a178de417a4ef,
       type: 3}
     maxQuantity: 6
-  - prefab: {fileID: 496392816534725254, guid: 5a91607e428226f478a6f3f2f363e636, type: 3}
-    maxQuantity: 8
-  weight: 1
+  - prefab: {fileID: 496392816534725254, guid: d1c33c80b1768534fb878a11e766f16c, type: 3}
+    maxQuantity: 12
+  weight: 2
   minDistance: 1
   maxDistance: 2147483647

@@ -22,7 +22,8 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         col = GetComponent<Collider2D>();
-        collisionFilter.ClearNormalAngle();
+        collisionFilter.NoFilter();
+        collisionFilter.useLayerMask = true;
         collisionFilter.layerMask = LayerMask.GetMask("Environment");
         //Initialise list
         hits = new List<RaycastHit2D>();
@@ -77,7 +78,8 @@ public class Movement : MonoBehaviour
         //Check collision       
         if (col.Cast(direction, collisionFilter, hits, currentSpeed) != 0)
         {
-            //return;
+            Debug.Log(hits[0].collider.gameObject);
+            return;
         }
 
         //Actually move

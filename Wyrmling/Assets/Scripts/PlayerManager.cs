@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (InputManager.instance.GetKey("press"))
         {
-            int layerMask = LayerMask.GetMask("Creature"); 
+            int layerMask = LayerMask.GetMask("Creature", "Food"); 
             RaycastHit2D hit = Physics2D.Raycast(Mouse.Position, Vector2.zero, Mathf.Infinity, layerMask);
             //Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, layerMask);
             if (hit.collider != null)

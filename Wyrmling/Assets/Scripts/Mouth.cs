@@ -38,12 +38,11 @@ public class Mouth : MonoBehaviour
     {
         if (PlayerManager.instance.target != null)
         {
-            if (presentTargets.Count > 0
-                || Vector3.Distance(PlayerManager.instance.nose.transform.position, PlayerManager.instance.TargetPosition) < 0.6f)
+            if (presentTargets.Count > 0)
             {
                 state = MouthState.Biting;
             }
-            else
+            else if (PlayerManager.instance.target.layer == LayerMask.NameToLayer("Creature"))
             {
                 state = MouthState.Firebreathing;
             }
@@ -79,6 +78,8 @@ public class Mouth : MonoBehaviour
                 {
                     Eat(food);
                 }
+
+                
             }
         }
     }
@@ -118,17 +119,18 @@ public class Mouth : MonoBehaviour
 
     void Eat(Food food)
     {
-        //If the player is big enough to eat the food whole, do so
-        //if (PlayerManager.instance.growth.foodConsumed > food.size)
-        //{
-        //    PlayerManager.instance.growth.foodConsumed += food.foodValue;
-        //    food.Consume();
-        //}
-        //else
-        //{        
-            PlayerManager.instance.growth.foodConsumed += Mathf.Min(food.foodValue, biteSize);
+        PlayerManager.instance.growth.foodConsumed += Mathf.Min(food.foodValue, biteSize);
+        if (food.transform.localScale.x > 0.4)
+        {
             food.Bite(biteSize);
-        //}
+        }
+        //If the food is very small, finish it off
+        else
+        {
+            food.Bite(Mathf.Infinity);
+        }
+        
+        
     }
 
     public void UpdateBiteSize()

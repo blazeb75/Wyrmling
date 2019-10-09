@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
     public float maxHitPoints = 100;
+    public UnityEvent OnDamaged;
+    public UnityEvent OnDeath;
+
     private float hitPoints;
 
     public float HitPoints { get => hitPoints; }
@@ -19,9 +23,10 @@ public class Health : MonoBehaviour
         if (amount > 0)
         {
             hitPoints -= amount;
+            OnDamaged.Invoke();
+            CheckHP();
         }
-        GetComponent<Renderer>().material.color = Color.yellow;
-        CheckHP();
+        
     }
 
     public void Heal(float amount)
@@ -42,8 +47,8 @@ public class Health : MonoBehaviour
     }
     private void Die()
     {
+        OnDeath.Invoke();
         Destroy(this);
-        Destroy(GetComponent<CritterMovement>());
-        GetComponent<Renderer>().material.color = Color.red;
+        
     }
 }

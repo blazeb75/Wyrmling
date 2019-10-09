@@ -114,7 +114,7 @@ public class WorldManager : MonoBehaviour
     
     void SpawnBiome(Vector2 position)
     {
-        Debug.Log("Spawning biome at " + position);
+        //Debug.Log("Spawning biome at " + position);
         validBiomes.Clear();
         weights.Clear();
         foreach(Biome biome in biomes)

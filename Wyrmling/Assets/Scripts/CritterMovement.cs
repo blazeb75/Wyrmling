@@ -14,6 +14,7 @@ public class CritterMovement : MonoBehaviour
     public float wanderSpeed = 2;
     public float chaseSpeed = 2.5f;
     public float fleeSpeed = 2.5f;
+    public float aggressionMultiplier = 1f;
 
     GameObject target;
 
@@ -35,7 +36,8 @@ public class CritterMovement : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        GetComponent<Health>().OnDeath.AddListener(DestroyThis);
         StartCoroutine(Ponder());
     }
 
@@ -51,12 +53,23 @@ public class CritterMovement : MonoBehaviour
             target = null;
     }
 
+    private void OnDestroy()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Food");
+    }
+
+    void DestroyThis()
+    {
+        Destroy(this);
+    }
+
     bool DecideBehaviour()
     {
         if (target != null)
         {
             //Decide whether to flee or chase
-            if (food.size > target.GetComponent<Growth>().foodConsumed)
+            //if (food.size > target.GetComponent<Growth>().foodConsumed)
+            if(transform.localScale.x * aggressionMultiplier > target.transform.localScale.x / 2f)
             {
                 StartCoroutine(Chase());
                 return true;

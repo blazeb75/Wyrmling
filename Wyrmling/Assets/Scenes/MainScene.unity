@@ -263,9 +263,49 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3966bfb7efc016e4cb6cea749b5eb3ca, type: 2}
   - {fileID: 11400000, guid: a5411818bfa60d241826feb04ba30c4a, type: 2}
   - {fileID: 11400000, guid: 8c016b74505d6ae4094ab755bc655f2a, type: 2}
+  - {fileID: 11400000, guid: d2f2f39b1c8902e4f94473af6a80c0a5, type: 2}
   biomeSize: 50
   spawnedBiomes: []
   visitedPositions: []
+--- !u!1 &1321517309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6668371566575714782, guid: d7c7f146ba0a27f4fbe71f86c8463c1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6668371566265925549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1321517310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321517309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  deathColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &1321517311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321517309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112a61ea4f579dd44a3f000b5db6f8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 100
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6668371566265925549
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 9032865717158238449, guid: 74a3bd1ce077b304f9bcf6b1a713c524, type: 3}
   randomlyPlacedObjects:
-  - prefab: {fileID: 910335103312351999, guid: ded0c74d41bc1124d8d08b7c86ec49ed, type: 3}
+  - prefab: {fileID: 1124232215135062367, guid: d42026f1ab6d21d48afc25aac1f5edbe,
+      type: 3}
     maxQuantity: 5
   - prefab: {fileID: 3431854537962333098, guid: 9c127b5a7d3352b4890c515f380e3e43,
       type: 3}
-    maxQuantity: 25
-  - prefab: {fileID: 906470371941209271, guid: 1e28c8260ed65604a94a359051b24f0b, type: 3}
     maxQuantity: 15
-  weight: 2
+  - prefab: {fileID: 906470371941209271, guid: 1e28c8260ed65604a94a359051b24f0b, type: 3}
+    maxQuantity: 10
+  weight: 1
   minDistance: 1
   maxDistance: 2147483647

@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70ffa171888e8a343ad8f04d34a83643, type: 3}
-  m_Name: Lair
+  m_Name: Desert
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3404624587014030226, guid: 2f8b278d33948d24c9da00f4c118388e, type: 3}
+  prefab: {fileID: 263006261091939986, guid: 83f45f78aee18874dbe2c95813c8c3f3, type: 3}
   randomlyPlacedObjects:
-  - prefab: {fileID: 1019914030332232505, guid: 2082915a68b7bb840ba4788455aac955,
-      type: 3}
-    maxQuantity: 15
   - prefab: {fileID: 1899753066360985209, guid: 31d3ab3ab93d0f145842d7cdd85d7cd1,
       type: 3}
-    maxQuantity: 15
-  weight: 1
-  minDistance: 0
-  maxDistance: 0
+    maxQuantity: 6
+  - prefab: {fileID: 6110247905253551059, guid: d369dde9370203742999ce51390a6173,
+      type: 3}
+    maxQuantity: 10
+  - prefab: {fileID: 496392816534725254, guid: d1c33c80b1768534fb878a11e766f16c, type: 3}
+    maxQuantity: 3
+  weight: 1.4
+  minDistance: 2
+  maxDistance: 2147483647
