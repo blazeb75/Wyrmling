@@ -50,6 +50,9 @@ TagManager:
   - name: Creatures
     uniqueID: 2036315703
     locked: 0
+  - name: Special Effect
+    uniqueID: 3463593125
+    locked: 0
   - name: EnvironmentHigh
     uniqueID: 1611501493
     locked: 0

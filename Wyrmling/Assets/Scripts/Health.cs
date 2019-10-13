@@ -6,16 +6,21 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     public float maxHitPoints = 100;
+    public float regeneration = 5f;
     public UnityEvent OnDamaged;
     public UnityEvent OnDeath;
 
-    private float hitPoints;
+    [SerializeField] float hitPoints;
 
     public float HitPoints { get => hitPoints; }
 
     private void Start()
     {
         hitPoints = maxHitPoints;
+    }
+    private void Update()
+    {
+        Heal(regeneration * Time.deltaTime);
     }
 
     public void Damage(float amount)

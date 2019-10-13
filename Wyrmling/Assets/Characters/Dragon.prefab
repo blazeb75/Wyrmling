@@ -630,7 +630,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6668371565596173727}
   - component: {fileID: 4252199069093780882}
-  - component: {fileID: 4386994648123435365}
   m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
@@ -703,20 +702,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4386994648123435365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6668371565596173724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a99da75266c4544c9802b5195fac76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 720
-  lookMode: 0
 --- !u!1 &6668371566575714782
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +718,7 @@ GameObject:
   - component: {fileID: 470666668883424884}
   - component: {fileID: 7605752816660503784}
   - component: {fileID: 4108421629428234396}
+  - component: {fileID: 8742522076180032401}
   m_Layer: 8
   m_Name: Dragon
   m_TagString: Player
@@ -749,7 +735,7 @@ Transform:
   m_GameObject: {fileID: 6668371566575714782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 5255293426429829401}
   - {fileID: 7657022116257209188}
@@ -777,6 +763,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   nose: {fileID: 8273127652200768152}
+  health: {fileID: 0}
   growth: {fileID: 0}
   mouth: {fileID: 0}
   movement: {fileID: 0}
@@ -795,8 +782,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 120
-  moveSpeed: 5
-  stoppingDistance: 3
+  moveSpeed: 7
+  aggressiveStoppingDistance: 1
+  passiveStoppingDistance: 5
   stoppingRotationDistance: 30
   nose: {fileID: 8273127652200768152}
   currentSpeed: 0
@@ -828,8 +816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59a56be37270924589eef200f9487ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalePerFoodValue: 0.025
+  scalePerFoodValue: 0.002
   foodConsumed: 0
+  startScale: 0
 --- !u!212 &470666668883424884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -927,6 +916,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.69, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &8742522076180032401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668371566575714782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112a61ea4f579dd44a3f000b5db6f8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 100
+  regeneration: 5
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  hitPoints: 0
 --- !u!1 &8065747057029582580
 GameObject:
   m_ObjectHideFlags: 0

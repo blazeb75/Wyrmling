@@ -7,7 +7,8 @@ public class Movement : MonoBehaviour
     [Header("Inspector variables")]
     public float rotationSpeed = 120f;
     public float moveSpeed = 5f;
-    public float stoppingDistance = 3f;
+    public float aggressiveStoppingDistance = 1f;
+    public float passiveStoppingDistance = 5f;
     public float stoppingRotationDistance = 30f;
     public GameObject nose;
 
@@ -58,7 +59,7 @@ public class Movement : MonoBehaviour
 
     void MoveTowardsHeadForward()
     {
-        currentSpeed = moveSpeed * Time.deltaTime;
+        currentSpeed = moveSpeed * Time.deltaTime * transform.localScale.y;
         Vector3 direction = PlayerManager.instance.headForward;
         //If the target is behind the nose, reverse towards it
         if(Vector3.Distance(transform.position, PlayerManager.instance.TargetPosition) < Vector3.Distance(transform.position, nose.transform.position))
@@ -69,16 +70,22 @@ public class Movement : MonoBehaviour
 
         //If close to target, slow down to stop
         float noseDistance = Vector3.Distance(nose.transform.position, PlayerManager.instance.TargetPosition);
-        if (noseDistance < stoppingDistance)
+        if (noseDistance < aggressiveStoppingDistance * transform.localScale.y)
         {
-            currentSpeed *= noseDistance / stoppingDistance;
+            if (PlayerManager.instance.target != null)
+            {
+                currentSpeed *= noseDistance / (aggressiveStoppingDistance * 0.8f);
+            }
+            else
+            {
+                currentSpeed *= noseDistance / (passiveStoppingDistance * 0.8f);
+            }
             //Sleep if very close
             if (noseDistance < 0.05f) return;
         }
         //Check collision       
         if (col.Cast(direction, collisionFilter, hits, currentSpeed) != 0)
         {
-            Debug.Log(hits[0].collider.gameObject);
             return;
         }
 

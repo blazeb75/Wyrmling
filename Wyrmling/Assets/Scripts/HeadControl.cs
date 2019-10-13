@@ -52,11 +52,11 @@ public class HeadControl : MonoBehaviour
         Vector3 cappedRotation = transform.localRotation.eulerAngles;
         //If the rotation is beyond an acceptable value, cap it
 
-        if (cappedRotation.z > 75 && cappedRotation.z < 285)
+        if (cappedRotation.z > 45 && cappedRotation.z < 360 - 45)
         {            
             if (cappedRotation.z > 180)
-                cappedRotation.z = 285;
-            else cappedRotation.z = 75;
+                cappedRotation.z = 360 - 45;
+            else cappedRotation.z = 45;
         }
 
         //Write the temporary variable to the actual rotation

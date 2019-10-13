@@ -70,17 +70,17 @@ PrefabInstance:
     - target: {fileID: 2528449562823465269, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2528449562823465269, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2528449562823465269, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3966960346458737876, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
@@ -90,17 +90,37 @@ PrefabInstance:
     - target: {fileID: 3966960346458737876, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: size
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: aggressionMultiplier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: chaseSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: fleeSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2333949348506678601, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: maxHitPoints
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 696842009307082658, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: m_Radius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2082915a68b7bb840ba4788455aac955, type: 3}

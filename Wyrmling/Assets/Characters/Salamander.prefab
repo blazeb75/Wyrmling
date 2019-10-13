@@ -110,7 +110,7 @@ PrefabInstance:
     - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: fleeSpeed
-      value: 3.5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
@@ -132,6 +132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.border.w
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 696842009307082658, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: m_Radius
+      value: 3.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2082915a68b7bb840ba4788455aac955, type: 3}

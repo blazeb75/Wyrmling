@@ -12,7 +12,7 @@ public class CameraMovement : MonoBehaviour
     {
         player = PlayerManager.instance.transform;
         previousZ = transform.position.z;
-        PlayerManager.instance.OnPlayerGrown.AddListener(StartScaleZ);
+        //PlayerManager.instance.OnPlayerGrown.AddListener(StartScaleZ);
     }
 
     // Update is called once per frame
@@ -23,16 +23,21 @@ public class CameraMovement : MonoBehaviour
 
     void Move()
     {
-        Vector3 newPos = player.position;
+        Vector3 newPos = player.position + player.transform.up * 2f;
         newPos.z = transform.position.z;
+
+        //Temp
+        newPos.z = previousZ * (PlayerManager.instance.transform.localScale.x / PlayerManager.instance.growth.startScale);
+
         transform.position = newPos;
+        
     }
     
     void StartScaleZ()
     {
         StartCoroutine(ScaleZ());
     }
-
+    
     public IEnumerator ScaleZ()
     {
         float scale = PlayerManager.instance.transform.localScale.x;

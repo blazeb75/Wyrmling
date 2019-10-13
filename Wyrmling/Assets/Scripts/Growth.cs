@@ -9,9 +9,13 @@ public class Growth : MonoBehaviour
 
     [Header("Runtime variables")]
     public float foodConsumed = 0;
+    public float startScale;
+    float startHP;
 
     private void Start()
     {
+        startHP = PlayerManager.instance.health.maxHitPoints;
+        startScale = transform.localScale.x;
         PlayerManager.instance.OnFoodConsumed.AddListener(StartGrow);
     }
 
@@ -23,11 +27,12 @@ public class Growth : MonoBehaviour
     IEnumerator Grow()
     {
         //Calculate the scale once 'digestion' is finished
-        float nextScale = 1 + scalePerFoodValue * foodConsumed;
+        float nextScale = startScale + scalePerFoodValue * foodConsumed;
+        float prevscale = transform.localRotation.x;
         while (transform.localScale.x < nextScale)
         {
             //Calculate the scale this frame
-            float newScale = transform.localScale.x + scalePerFoodValue * Time.deltaTime * 2f;
+            float newScale = transform.localScale.x + (nextScale - prevscale) * (Time.deltaTime / 3f);
             
             //Prevent overshooting
             if (newScale >= nextScale)
@@ -36,7 +41,7 @@ public class Growth : MonoBehaviour
                 PlayerManager.instance.OnPlayerGrown.Invoke();
             }
             transform.localScale = new Vector3(newScale, newScale, newScale);
-
+            PlayerManager.instance.health.maxHitPoints = transform.localScale.x * startHP / startScale;
             yield return null;
         }
     }

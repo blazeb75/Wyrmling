@@ -10,11 +10,12 @@ public class CritterMovement : MonoBehaviour
     [Tooltip("The minimum time the creature will pursue the player. 0 = ignore them.")]
     public float chaseTime = 4;
     public float fleeTime = 4;
-    
+
     public float wanderSpeed = 2;
     public float chaseSpeed = 2.5f;
     public float fleeSpeed = 2.5f;
     public float aggressionMultiplier = 1f;
+    public float biteDamage = 10f;
 
     GameObject target;
 
@@ -29,7 +30,7 @@ public class CritterMovement : MonoBehaviour
         food = GetComponent<Food>();
 
         col = GetComponent<Collider2D>();
-        collisionFilter.layerMask = LayerMask.GetMask("Environment", "Player");
+        collisionFilter.layerMask = LayerMask.GetMask("Environment", "Player", "Creature");
         //Initialise list
         hits = new List<RaycastHit2D>();
     }
@@ -39,6 +40,7 @@ public class CritterMovement : MonoBehaviour
     {
         GetComponent<Health>().OnDeath.AddListener(DestroyThis);
         StartCoroutine(Ponder());
+        StartCoroutine(Biting());
     }
 
     //The trigger collider represents the creature's perceptable area
@@ -69,7 +71,7 @@ public class CritterMovement : MonoBehaviour
         {
             //Decide whether to flee or chase
             //if (food.size > target.GetComponent<Growth>().foodConsumed)
-            if(transform.localScale.x * aggressionMultiplier > target.transform.localScale.x / 2f)
+            if (transform.localScale.x * aggressionMultiplier > target.transform.localScale.x / 2f)
             {
                 StartCoroutine(Chase());
                 return true;
@@ -93,7 +95,7 @@ public class CritterMovement : MonoBehaviour
                 yield break;
             }
             time += Time.deltaTime;
-            yield return null;   
+            yield return null;
         }
 
         StartCoroutine(Wander());
@@ -121,15 +123,18 @@ public class CritterMovement : MonoBehaviour
         //Chase the target for the set time
         float time = 0;
         GameObject rememberedTarget = target;
-        while(time < chaseTime
-            && col.Cast(transform.up, collisionFilter, hits, chaseSpeed) == 0)
+        while (time < chaseTime)
         {
             //Get the vector to the target
             Vector3 dir = rememberedTarget.transform.position - transform.position;
             dir.Normalize();
             //Move in that direction
             transform.up = dir;
-            transform.Translate(dir * chaseSpeed * Time.deltaTime, Space.World);
+            //Check collision
+            if (col.Cast(dir, collisionFilter, hits, chaseSpeed * Time.deltaTime) == 0)
+            {
+                transform.Translate(dir * chaseSpeed * Time.deltaTime, Space.World);
+            }
             time += Time.deltaTime;
             yield return null;
         }
@@ -146,14 +151,13 @@ public class CritterMovement : MonoBehaviour
         dir.Normalize();
         //Scatter by a random amount
         float angle = Random.Range(-30, 30);
-        dir.x = dir.x * Mathf.Cos(angle) - dir.y * Mathf.Sin(angle);
-        dir.y = dir.x * Mathf.Sin(angle) + dir.y * Mathf.Cos(angle);
+        dir = Quaternion.AngleAxis(angle, Vector3.back) * dir;
         //Move in that direction     
         float time = 0;
-        while(time < fleeTime)
+        while (time < fleeTime)
         {
             transform.up = dir;
-            transform.Translate(dir * fleeSpeed * Time.deltaTime, Space.World);
+            transform.Translate(dir * fleeSpeed * Time.deltaTime, Space.World);            
             time += Time.deltaTime;
             yield return null;
         }
@@ -163,5 +167,33 @@ public class CritterMovement : MonoBehaviour
         }
     }
 
-    
+    IEnumerator Biting()
+    {
+        while (true)
+        {
+            if (target != null) {
+                while (Physics2D.Raycast(transform.position, transform.up,  col.bounds.extents.y * (0.25f + transform.localScale.y), LayerMask.GetMask("Player")))
+                {
+                    Bite();
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+            yield return null;
+        }
+
+    }
+
+    public void Bite()
+    {
+        if (target != null)
+        {
+            if (target.TryGetComponent(out Health health))
+            {
+                health.Damage(biteDamage);
+            }
+            Instantiate(Resources.Load<GameObject>("Bite"), transform.position, Quaternion.identity);
+        }
+
+    }
+
 }

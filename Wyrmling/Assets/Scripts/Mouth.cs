@@ -78,7 +78,8 @@ public class Mouth : MonoBehaviour
                 {
                     Eat(food);
                 }
-
+                GameObject bite = Instantiate(Resources.Load<GameObject>("Bite"), transform.position + transform.forward * 2f, Quaternion.identity);
+                bite.transform.localScale = PlayerManager.instance.transform.localScale;
                 
             }
         }

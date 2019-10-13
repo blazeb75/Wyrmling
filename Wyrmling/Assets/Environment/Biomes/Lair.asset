@@ -16,7 +16,7 @@ MonoBehaviour:
   randomlyPlacedObjects:
   - prefab: {fileID: 1019914030332232505, guid: 2082915a68b7bb840ba4788455aac955,
       type: 3}
-    maxQuantity: 15
+    maxQuantity: 24
   - prefab: {fileID: 1899753066360985209, guid: 31d3ab3ab93d0f145842d7cdd85d7cd1,
       type: 3}
     maxQuantity: 15

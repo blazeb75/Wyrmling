@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject nose;
 
     [Header("Components (assigned at runtime)")]
+    public Health health;
     public Growth growth;
     public Mouth mouth;
     public Movement movement;
@@ -47,7 +48,7 @@ public class PlayerManager : MonoBehaviour
         {
             throw new System.Exception("Duplicate player manager found");
         }
-
+        health = GetComponent<Health>();
         growth = GetComponentInChildren<Growth>();
         mouth = GetComponentInChildren<Mouth>();
         movement = GetComponent<Movement>();
