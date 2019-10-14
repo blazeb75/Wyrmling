@@ -117,6 +117,11 @@ PrefabInstance:
       propertyPath: aggressionMultiplier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: biteDamage
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2333949348506678601, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: maxHitPoints
@@ -128,15 +133,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: cfb99fee112450f40a2299f66e88724f,
         type: 3}
-    - target: {fileID: 1487127051851069011, guid: 2082915a68b7bb840ba4788455aac955,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.border.w
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 696842009307082658, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: m_Radius
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487127051851069011, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2082915a68b7bb840ba4788455aac955, type: 3}

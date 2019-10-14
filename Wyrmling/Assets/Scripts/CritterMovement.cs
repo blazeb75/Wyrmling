@@ -71,7 +71,7 @@ public class CritterMovement : MonoBehaviour
         {
             //Decide whether to flee or chase
             //if (food.size > target.GetComponent<Growth>().foodConsumed)
-            if (transform.localScale.x * aggressionMultiplier > target.transform.localScale.x / 2f)
+            if (transform.localScale.x * aggressionMultiplier > target.transform.localScale.x)
             {
                 StartCoroutine(Chase());
                 return true;
@@ -191,7 +191,8 @@ public class CritterMovement : MonoBehaviour
             {
                 health.Damage(biteDamage);
             }
-            Instantiate(Resources.Load<GameObject>("Bite"), transform.position, Quaternion.identity);
+            GameObject bite = Instantiate(Resources.Load<GameObject>("Bite"), transform.position + transform.forward * 2f * transform.localScale.y, Quaternion.identity);
+            bite.transform.localScale = PlayerManager.instance.transform.localScale;
         }
 
     }

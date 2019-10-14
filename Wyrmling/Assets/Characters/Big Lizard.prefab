@@ -112,6 +112,11 @@ PrefabInstance:
       propertyPath: wanderSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9167032343723168698, guid: 2082915a68b7bb840ba4788455aac955,
+        type: 3}
+      propertyPath: biteDamage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2333949348506678601, guid: 2082915a68b7bb840ba4788455aac955,
         type: 3}
       propertyPath: maxHitPoints

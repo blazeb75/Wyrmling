@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8233149566487347086}
   - component: {fileID: 6290717382870656316}
+  - component: {fileID: 3913904772511296744}
   m_Layer: 0
   m_Name: Bite
   m_TagString: Untagged
@@ -67,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -831374171
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3bd39126f27a22147bd1607c81e72b36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -80,3 +81,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3913904772511296744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419990929470052018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4218909b3bdf994883647badd8be4c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  duration: 1
+  age: 0
