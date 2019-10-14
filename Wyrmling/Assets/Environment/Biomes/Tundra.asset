@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ffa171888e8a343ad8f04d34a83643, type: 3}
+  m_Name: Tundra
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 263006261091939986, guid: dd134882e7fec8d438f45b3ee7d77d74, type: 3}
+  randomlyPlacedObjects:
+  - prefab: {fileID: 2016404149216799922, guid: 533cd4f32bce6a445a7a22bd561f998b,
+      type: 3}
+    maxQuantity: 3
+  - prefab: {fileID: 1899753066360985209, guid: 31d3ab3ab93d0f145842d7cdd85d7cd1,
+      type: 3}
+    maxQuantity: 3
+  - prefab: {fileID: 5159858820536120278, guid: cc2a505d201b7914385a178de417a4ef,
+      type: 3}
+    maxQuantity: 2
+  - prefab: {fileID: 3166564501155098705, guid: 1a40603d2ea98da40be2db73268f9bbe,
+      type: 3}
+    maxQuantity: 4
+  weight: 0.6
+  minDistance: 3
+  maxDistance: 2147483647
