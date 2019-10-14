@@ -53,6 +53,10 @@ public class Health : MonoBehaviour
     private void Die()
     {
         OnDeath.Invoke();
+        if (CompareTag("Player"))
+        {            
+            DeathManager.instance.GameOver();
+        }
         Destroy(this);
         
     }

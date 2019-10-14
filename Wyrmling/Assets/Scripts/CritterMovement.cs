@@ -192,7 +192,10 @@ public class CritterMovement : MonoBehaviour
                 health.Damage(biteDamage);
             }
             GameObject bite = Instantiate(Resources.Load<GameObject>("Bite"), transform.position + transform.forward * 2f * transform.localScale.y, Quaternion.identity);
-            bite.transform.localScale = PlayerManager.instance.transform.localScale;
+            if (PlayerManager.instance != null)
+            {
+                bite.transform.localScale = PlayerManager.instance.transform.localScale;
+            }
         }
 
     }

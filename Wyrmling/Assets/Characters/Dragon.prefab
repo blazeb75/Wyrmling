@@ -617,7 +617,7 @@ MonoBehaviour:
   fireParticle: {fileID: 1448673657942847160, guid: 28fa47efdf302c048b353688ab476f7b,
     type: 3}
   biteSize: 5
-  biteDamage: 50
+  biteDamage: 25
   biteInterval: 1
   state: 0
   presentTargets: []

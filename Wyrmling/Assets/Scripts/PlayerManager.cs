@@ -59,6 +59,15 @@ public class PlayerManager : MonoBehaviour
         CheckCursorTarget();
     }
 
+    private void OnDestroy()
+    {
+        Destroy(WorldManager.instance);
+        Destroy(Camera.main.GetComponent<CameraMovement>());
+        Destroy(GetComponent<Movement>());
+        Destroy(GetComponentInChildren<HeadControl>());
+        Destroy(GetComponentInChildren<Mouth>());
+    }
+
     //If the cursor is over a creature, store it
     void CheckCursorTarget()
     {

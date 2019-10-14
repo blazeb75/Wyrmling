@@ -72,7 +72,7 @@ MonoBehaviour:
   chaseSpeed: 4
   fleeSpeed: 1
   aggressionMultiplier: 1.4
-  biteDamage: 35
+  biteDamage: 45
 --- !u!114 &411315599649228321
 MonoBehaviour:
   m_ObjectHideFlags: 0
