@@ -265,6 +265,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c016b74505d6ae4094ab755bc655f2a, type: 2}
   - {fileID: 11400000, guid: d2f2f39b1c8902e4f94473af6a80c0a5, type: 2}
   - {fileID: 11400000, guid: b747178e3240f95409443d2e0eb03258, type: 2}
+  - {fileID: 11400000, guid: 4edef861342c94f4cba47e102bc29df9, type: 2}
   biomeSize: 50
   spawnedBiomes: []
   visitedPositions: []
