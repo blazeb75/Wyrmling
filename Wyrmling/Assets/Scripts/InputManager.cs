@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(controls.press))
+        if (GetKey("press"))
         {
             lastMousePosition = Mouse.Position;
         }
