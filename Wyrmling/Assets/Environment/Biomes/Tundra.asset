@@ -23,7 +23,7 @@ MonoBehaviour:
   - prefab: {fileID: 5159858820536120278, guid: cc2a505d201b7914385a178de417a4ef,
       type: 3}
     maxQuantity: 2
-  - prefab: {fileID: 3166564501155098705, guid: 1a40603d2ea98da40be2db73268f9bbe,
+  - prefab: {fileID: 2979967925495345869, guid: 6643314ff9ad032448ce61ea5de31158,
       type: 3}
     maxQuantity: 4
   weight: 0.6
