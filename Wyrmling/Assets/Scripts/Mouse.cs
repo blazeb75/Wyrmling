@@ -9,7 +9,11 @@ public static class Mouse
     {
         get
         {
+            #if UNITY_IOS
+            Vector3 pos = Input.GetTouch(0).position;         
+            #else 
             Vector3 pos = Input.mousePosition;
+            #endif
             pos.z = Camera.main.transform.position.z * -1f;
             return Camera.main.ScreenToWorldPoint(pos);
         }

@@ -51,14 +51,48 @@ public class InputManager : MonoBehaviour
     //Returns Input.GetKey based on the name of a keybinding rather than the name of the key itself
     public bool GetKey(string key)
     {
+        if (Application.isMobilePlatform && key == "press")
+        {
+            if(Input.touchCount != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         return Input.GetKey((KeyCode)controls.GetType().GetField(key).GetValue(controls));
     }
     public bool GetKeyDown(string key)
     {
+        if (Application.isMobilePlatform && key == "press")
+        {
+            foreach (Touch i in Input.touches)
+            {
+                if (i.phase == TouchPhase.Began)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         return Input.GetKeyDown((KeyCode)controls.GetType().GetField(key).GetValue(controls));
     }
     public bool GetKeyUp(string key)
     {
+        if (Application.isMobilePlatform && key == "press")
+        {
+            foreach (Touch i in Input.touches)
+            {
+                if (i.phase == TouchPhase.Ended)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         return Input.GetKeyUp((KeyCode)controls.GetType().GetField(key).GetValue(controls));
     }
 }
