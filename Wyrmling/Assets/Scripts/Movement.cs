@@ -45,12 +45,7 @@ public class Movement : MonoBehaviour
         if (Mathf.Abs(angleToMouse) < stoppingRotationDistance)
         {
             currentRotationSpeed *= angleToMouse / stoppingRotationDistance;
-            //currentRotationSpeed += 1;
-            //Sleep if very close TODO make this work
-            //if (Mathf.Abs(angleToMouse) < 1f) return;
-        }        
-        //Increase rotation speed if distance is small TODO
-        //float distance = Vector3.Distance(nose.transform.position, InputManager.instance.lastMousePosition);
+        }
         //Ensure the rotation is negative if appropriate
         else if (angleToMouse < 0) currentRotationSpeed *= -1f;
         //Actually rotate

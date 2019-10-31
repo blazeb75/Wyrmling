@@ -18,22 +18,27 @@ public class FireParticle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Move
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
 
-        //Die after duration
+        //Die after existing for duration
         if(Time.time - startTime > duration)
         {
             Destroy(this.gameObject);
         }
     }
 
+    //When another object overlaps with this one, destroy this and send a damage message
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //The damage method can be recieved by Health components
         collision.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
         Destroy(GetComponent<Collider2D>());
         StartCoroutine(DestroyAfterDelay());
     }
 
+    //Since many colliders are larger than their object's sprite, 
+    //the fire particle will continue to move for a moment after collision before being destroyed
     IEnumerator DestroyAfterDelay()
     {
         yield return new WaitForSeconds(0.15f);

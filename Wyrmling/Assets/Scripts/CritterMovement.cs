@@ -10,7 +10,6 @@ public class CritterMovement : MonoBehaviour
     [Tooltip("The minimum time the creature will pursue the player. 0 = ignore them.")]
     public float chaseTime = 4;
     public float fleeTime = 4;
-
     public float wanderSpeed = 2;
     public float chaseSpeed = 2.5f;
     public float fleeSpeed = 2.5f;
@@ -19,18 +18,27 @@ public class CritterMovement : MonoBehaviour
 
     GameObject target;
 
-    Food food;
+    Food foodComponent;
 
     Collider2D col;
+
+    //The list used to store raycast hits from collision detection
+    //Having this as a field rather than a local variable has some performance benefit (or so I've heard)
     List<RaycastHit2D> hits;
+
+    //The filter used for collision detection
     ContactFilter2D collisionFilter;
 
     private void Awake()
     {
-        food = GetComponent<Food>();
+        foodComponent = GetComponent<Food>();
 
         col = GetComponent<Collider2D>();
+
+        collisionFilter.NoFilter();
+        collisionFilter.useLayerMask = true;
         collisionFilter.layerMask = LayerMask.GetMask("Environment", "Player", "Creature");
+
         //Initialise list
         hits = new List<RaycastHit2D>();
     }
@@ -57,9 +65,11 @@ public class CritterMovement : MonoBehaviour
 
     private void OnDestroy()
     {
+        //When this component is removed, the creature becomes food
         gameObject.layer = LayerMask.NameToLayer("Food");
     }
 
+    //This method allows destroy to be a listener to a unity event by having no parameter
     void DestroyThis()
     {
         Destroy(this);
@@ -70,7 +80,6 @@ public class CritterMovement : MonoBehaviour
         if (target != null)
         {
             //Decide whether to flee or chase
-            //if (food.size > target.GetComponent<Growth>().foodConsumed)
             if (transform.localScale.x * aggressionMultiplier > target.transform.localScale.x)
             {
                 StartCoroutine(Chase());
@@ -85,11 +94,15 @@ public class CritterMovement : MonoBehaviour
         return false;
     }
 
+    //The creature waits in place.
+    //It will be interupted if the player is nearby
+    //Otherwise, it will Wander after idleTime has passed
     IEnumerator Ponder()
     {
         float time = 0;
         while (time < idleTime)
         {
+            //Check if the player is nearby and stop this behaviour if they are
             if (DecideBehaviour())
             {
                 yield break;
@@ -101,6 +114,7 @@ public class CritterMovement : MonoBehaviour
         StartCoroutine(Wander());
     }
 
+    //The creature moves in a random direction
     IEnumerator Wander()
     {
         //Choose a random direction
@@ -118,6 +132,7 @@ public class CritterMovement : MonoBehaviour
         StartCoroutine(Ponder());
     }
 
+    //The creature chases the player
     IEnumerator Chase()
     {
         //Chase the target for the set time
@@ -144,6 +159,7 @@ public class CritterMovement : MonoBehaviour
         }
     }
 
+    //The creature flees from the player
     IEnumerator Flee()
     {
         //Get a vector away from the target
@@ -167,6 +183,7 @@ public class CritterMovement : MonoBehaviour
         }
     }
 
+    //This routine periodically bites the player if they are just in front of the creature's collider
     IEnumerator Biting()
     {
         while (true)
@@ -183,6 +200,7 @@ public class CritterMovement : MonoBehaviour
 
     }
 
+    //Damage the player and create a Bite effect
     public void Bite()
     {
         if (target != null)

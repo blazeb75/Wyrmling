@@ -51,7 +51,7 @@ public class WinManager : MonoBehaviour
         {
             if (InputManager.instance.GetKeyDown("press"))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene("Menu");
                 StopAllCoroutines();
             }
 

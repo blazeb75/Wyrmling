@@ -447,6 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 606240473}
   - component: {fileID: 606240472}
+  - component: {fileID: 606240474}
   m_Layer: 0
   m_Name: GameOver
   m_TagString: Untagged
@@ -466,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3984c848788b88e45a8f5b9c21c28acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverCanvas: {fileID: 1995751453}
+  canvas: {fileID: 1995751453}
 --- !u!4 &606240473
 Transform:
   m_ObjectHideFlags: 0
@@ -483,6 +484,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &606240474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606240471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c1df81655cefb4aa72dbc7f7ccc4e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1421953181}
 --- !u!1 &875313038
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f6469e2d64fe8419871ef7b45003f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: {fileID: 0}
   baseRadius: 30
 --- !u!1 &1421953181
 GameObject:
@@ -796,7 +809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1421953182
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1195,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1995751454
 RectTransform:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Mouse
 {
-    //TODO mobile support
+    ///<Summary>Gets the worldspace position of the mouse or touch, depending on platform.</Summary>
     public static Vector3 Position
     {
         get

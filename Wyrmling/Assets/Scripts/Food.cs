@@ -16,6 +16,7 @@ public class Food : MonoBehaviour
         startFoodValue = foodValue;
     }
 
+    ///<summary>Consumes the entire remainder of the food, destroying the object.</summary>
     public virtual IEnumerator Consume()
     {
         PlayerManager.instance.OnFoodConsumed.Invoke();
@@ -25,6 +26,9 @@ public class Food : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Removes an amount of food value, causing the food to become physically smaller.
+    /// </summary>
     public virtual void Bite(float amount)
     {
         foodValue -= amount;

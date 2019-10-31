@@ -53,6 +53,7 @@ public class Mouth : MonoBehaviour
         }
     }
 
+    //Store references to each creature as long as it stays inside the trigger area
     private void OnTriggerEnter2D(Collider2D collision)
     {
         presentTargets.Add(collision.gameObject);
@@ -65,6 +66,8 @@ public class Mouth : MonoBehaviour
 
     public void Bite()
     {        
+        //For each creature inside the mouth collider, damage it and create a bite effect
+        //If the creature is dead, eat it instead of damaging it
         foreach(GameObject target in presentTargets)
         {
             if (target != null)
@@ -85,6 +88,7 @@ public class Mouth : MonoBehaviour
         }
     }
 
+    //Periodically bite if there is anything to bite and the dragon is in that state
     IEnumerator Biting()
     {
         while (true)
@@ -99,6 +103,7 @@ public class Mouth : MonoBehaviour
        
     }
 
+    //Periodically emits flame, as long as the dragon is in that state
     IEnumerator BreatheFire()
     {
         while (true)
@@ -118,6 +123,7 @@ public class Mouth : MonoBehaviour
         }
     }
 
+    //Subtracts food's size and increases the dragon's food consumed
     void Eat(Food food)
     {
         PlayerManager.instance.growth.foodConsumed += Mathf.Min(food.foodValue, biteSize);
@@ -126,14 +132,15 @@ public class Mouth : MonoBehaviour
             food.Bite(biteSize);
         }
         //If the food is very small, finish it off
+        //(Without this check, the food can become too small to see)
         else
         {
             food.Bite(Mathf.Infinity);
-        }
-        
+        }        
         
     }
 
+    //Scales the amount of food consumed per bite to a value to the dragon's size
     public void UpdateBiteSize()
     {
         float scale = PlayerManager.instance.transform.localScale.x;

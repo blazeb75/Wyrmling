@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PointAtNearestEnemy : MonoBehaviour
 {
     Image image;
-    public GameObject debug;
     public float baseRadius = 30;
 
     RectTransform rectTransform;
@@ -19,16 +18,18 @@ public class PointAtNearestEnemy : MonoBehaviour
 
     private void Update()
     {
-        image.enabled = true;
+        //Get the nearest enemy to the center of the screen
         GameObject enemy = GetClosestEnemy(GetEnemiesInRange(baseRadius));
-        debug = enemy;
+        //Disable if there is no enemy or if the nearest enemy is on screen
         if (enemy != null && !enemy.GetComponent<Renderer>().isVisible)
         {
-            rectTransform.anchoredPosition = Vector2.zero;
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(rectTransform.anchoredPosition);
+            image.enabled = true;
+            //Get the direction to the enemy
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Vector2.zero);
             worldPos.z = 0f;
             Vector3 dir = enemy.transform.position - worldPos;
             dir.Normalize();
+            //Position this object near the edge of the screen in that direction
             Vector3 newPos = new Vector3
             (
                 dir.x * Screen.width * 0.95f,
@@ -43,7 +44,7 @@ public class PointAtNearestEnemy : MonoBehaviour
             image.enabled = false;
         }
     }
-
+    ///<summary> Gets the closest enemy to the center of the screen from an array of enemies.</summary>
     GameObject GetClosestEnemy(GameObject[] enemies)
     {
         GameObject bestTarget = null;
@@ -62,15 +63,18 @@ public class PointAtNearestEnemy : MonoBehaviour
         return bestTarget;
     }
 
+    ///<summary> Gets all of the enemies within a certain distance of the player.
+    ///If none are found, it recursively checks a larger area, up to five times the initial size</summary>
     GameObject[] GetEnemiesInRange(float radius)
     {
         List<GameObject> enemies = new List<GameObject>();
         Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(PlayerManager.instance.transform.position, radius, LayerMask.GetMask("Creature"));
+        //Get the GameObject associated with the found colliders
         foreach(Collider2D enemy in enemyColliders)
         {
             enemies.Add(enemy.gameObject);
         }
-
+        
         if(enemies.Count == 0 && radius < baseRadius * 5)
         {
             return GetEnemiesInRange(radius * 1.5f);

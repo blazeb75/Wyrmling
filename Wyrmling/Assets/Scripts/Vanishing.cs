@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Causes a game object to shrink over time, then disappear.
+/// </summary>
 public class Vanishing : MonoBehaviour
 {
+    //There is currently only one mode, but more may be added later
     public enum Mode { Shrink }
     public Mode mode;
     public float duration = 3;

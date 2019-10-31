@@ -61,22 +61,23 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        //Destroy the scripts that depend on this
         Destroy(WorldManager.instance);
         Destroy(Camera.main.GetComponent<CameraMovement>());
         Destroy(GetComponent<Movement>());
         Destroy(GetComponentInChildren<HeadControl>());
         Destroy(GetComponentInChildren<Mouth>());
-        Destroy(GameObject.FindObjectOfType<PointAtNearestEnemy>().gameObject);
+        Destroy(FindObjectOfType<PointAtNearestEnemy>().gameObject);
     }
 
-    //If the cursor is over a creature, store it
+    //If the cursor is over a creature, store it.
+    //Otherwise, set it to null.
     void CheckCursorTarget()
     {
         if (InputManager.instance.GetKey("press"))
         {
             int layerMask = LayerMask.GetMask("Creature", "Food"); 
             RaycastHit2D hit = Physics2D.Raycast(Mouse.Position, Vector2.zero, Mathf.Infinity, layerMask);
-            //Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, layerMask);
             if (hit.collider != null)
             {
                 target = hit.collider.gameObject;

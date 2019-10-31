@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
         }
     }
     
-    //Returns Input.GetKey based on the name of a keybinding rather than the name of the key itself
+    ///<summary>Returns Input.GetKey based on the name of a keybinding rather than the name of the key itself</summary>
     public bool GetKey(string key)
     {
         if (Application.isMobilePlatform && key == "press")
@@ -65,6 +65,7 @@ public class InputManager : MonoBehaviour
 
         return Input.GetKey((KeyCode)controls.GetType().GetField(key).GetValue(controls));
     }
+
     public bool GetKeyDown(string key)
     {
         if (Application.isMobilePlatform && key == "press")
