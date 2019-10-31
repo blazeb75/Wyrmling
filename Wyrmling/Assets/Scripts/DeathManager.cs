@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathManager : MonoBehaviour
 {
-    public GameObject gameOverCanvas;
+    public GameObject canvas;
     Text sizeText;
 
     public static DeathManager instance;
@@ -25,29 +25,31 @@ public class DeathManager : MonoBehaviour
     } 
     void Start()
     {
-        sizeText = gameOverCanvas.transform.Find("SizeText").GetComponent<Text>();
-        gameOverCanvas.SetActive(false);
+        canvas.SetActive(true);
+        sizeText = canvas.transform.Find("SizeText").GetComponent<Text>();
+        canvas.SetActive(false);
     }
 
     public void GameOver()
     {
-        gameOverCanvas.SetActive(true);
+        canvas.SetActive(true);
         float size = PlayerManager.instance.transform.localScale.y / 20f * 100f;        
         decimal sizeDec = decimal.Round(decimal.Parse(size.ToString()), 2, System.MidpointRounding.AwayFromZero);
         string sizeString = sizeDec.ToString() + "%";
         sizeText.text = sizeText.text.Replace("_SIZE", sizeString);
-        StartCoroutine(WaitForDeathInput());
+        StartCoroutine(WaitForInput());
 
         Destroy(PlayerManager.instance);
     }
 
-    IEnumerator WaitForDeathInput()
+    IEnumerator WaitForInput()
     {
         while (true)
         {
             if (InputManager.instance.GetKeyDown("press"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                StopAllCoroutines();
             }
 
             yield return null;

@@ -26,7 +26,6 @@ public class PointAtNearestEnemy : MonoBehaviour
         {
             rectTransform.anchoredPosition = Vector2.zero;
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(rectTransform.anchoredPosition);
-            Debug.Log(rectTransform.anchoredPosition);
             worldPos.z = 0f;
             Vector3 dir = enemy.transform.position - worldPos;
             dir.Normalize();
@@ -49,7 +48,7 @@ public class PointAtNearestEnemy : MonoBehaviour
     {
         GameObject bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = Camera.main.ScreenToWorldPoint(rectTransform.anchoredPosition);
+        Vector3 currentPosition = Camera.main.ScreenToWorldPoint(Vector3.zero);
         foreach (GameObject potentialTarget in enemies)
         {
             Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;

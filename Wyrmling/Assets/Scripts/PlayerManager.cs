@@ -66,6 +66,7 @@ public class PlayerManager : MonoBehaviour
         Destroy(GetComponent<Movement>());
         Destroy(GetComponentInChildren<HeadControl>());
         Destroy(GetComponentInChildren<Mouth>());
+        Destroy(GameObject.FindObjectOfType<PointAtNearestEnemy>().gameObject);
     }
 
     //If the cursor is over a creature, store it
