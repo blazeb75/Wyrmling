@@ -14,7 +14,7 @@ public class WorldManager : MonoBehaviour
     List<Biome> validBiomes;
     List<float> weights;
 
-    //WorldTile represents an environment in the world
+    //A WorldTile represents a biome instance
     [System.Serializable]
     struct WorldTile
     {        
@@ -59,6 +59,8 @@ public class WorldManager : MonoBehaviour
         StartCoroutine(CheckPlayerExploration());
     }
 
+    //Periodically checks if the player has moved to an unexplored biome
+    //Becomes more frequent as the player grows
     IEnumerator CheckPlayerExploration()
     {
         while (true)
@@ -68,7 +70,7 @@ public class WorldManager : MonoBehaviour
                 visitedPositions.Add(GetPlayerPosition());
                 SpawnBiomesAroundPlayer();                
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f / Mathf.Sqrt(PlayerManager.instance.transform.localScale.y));
         }
     }
 
