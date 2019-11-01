@@ -16,7 +16,7 @@ MonoBehaviour:
   randomlyPlacedObjects:
   - prefab: {fileID: 2016404149216799922, guid: 533cd4f32bce6a445a7a22bd561f998b,
       type: 3}
-    maxQuantity: 3
+    maxQuantity: 6
   - prefab: {fileID: 1899753066360985209, guid: 31d3ab3ab93d0f145842d7cdd85d7cd1,
       type: 3}
     maxQuantity: 3
@@ -26,6 +26,6 @@ MonoBehaviour:
   - prefab: {fileID: 2979967925495345869, guid: 6643314ff9ad032448ce61ea5de31158,
       type: 3}
     maxQuantity: 4
-  weight: 0.6
+  weight: 1
   minDistance: 3
   maxDistance: 2147483647

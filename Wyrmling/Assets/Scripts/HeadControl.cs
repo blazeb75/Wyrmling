@@ -7,6 +7,11 @@ public class HeadControl : MonoBehaviour
     [SerializeField] float rotationSpeed;
     Vector3 rotationLastFrame;
 
+    /// <summary>
+    /// Lock: The head looks at the selected target position, changed by clicking.
+    /// Free: The head looks at the cursor at all times, regardless of clicks. 
+    /// Free is not guarenteed to function properly with other game mechanics such as fire breathing.
+    /// </summary>
     public enum LookMode { Lock, Free}
     public LookMode lookMode = LookMode.Lock;
 
@@ -48,7 +53,7 @@ public class HeadControl : MonoBehaviour
     //Cap the rotation so the neck doesn't snap
     void CapRotation()
     {
-        //Store the rotation in a temporary variable
+        //Store the rotation in a temporary variable so it can be edited (members of struct properties cannot be written to)
         Vector3 cappedRotation = transform.localRotation.eulerAngles;
         //If the rotation is beyond an acceptable value, cap it
 

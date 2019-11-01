@@ -70,7 +70,7 @@ public class WorldManager : MonoBehaviour
                 visitedPositions.Add(GetPlayerPosition());
                 SpawnBiomesAroundPlayer();                
             }
-            yield return new WaitForSeconds(3f / Mathf.Sqrt(PlayerManager.instance.transform.localScale.y));
+            yield return new WaitForSeconds(Mathf.Sqrt(3f / PlayerManager.instance.transform.localScale.y));
         }
     }
 

@@ -29,18 +29,22 @@ public class WinManager : MonoBehaviour
         StartCoroutine(CheckWinState());
     }
 
+    /// <summary>
+    /// Every frame, checks whether the player's scale has reached the victory threshold.
+    /// If it has, freeze the player and show the victory canvas.
+    /// </summary>
     IEnumerator CheckWinState()
     {
         float size = 0;
         while (size < 100)
         {
             yield return null;
-            size = PlayerManager.instance.transform.localScale.y / 20f * 100f;
+            size = PlayerManager.instance.transform.localScale.y / 8f * 100f;
         }
-
+        //The player has grown large enough. Show the canvas until input is recieved.
         canvas.SetActive(true);
         StartCoroutine(WaitForInput());
-
+        //Freeze the player
         Destroy(PlayerManager.instance);
     }
 

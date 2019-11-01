@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Causes a gameobject to take on a 'loose' relationship with its parent's rotation, creating an organic snake-like movement between trailing body parts.
+/// The visual effect can be enhanced by adding more segments.
+/// </summary>
 public class BodySegment : MonoBehaviour
 {
     //The angle in degrees that this segment's rotation is allowed to vary from its parent
+    //Higher values can make visual seams more obvious, while very small values can diminish the organic appearance
     [SerializeField] float allowance = 30f;
 
     //The object's rotation is stored at the end of every frame and restored on the next frame.

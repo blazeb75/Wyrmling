@@ -67,20 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6548590727615946962, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
+    - target: {fileID: 1358937685740109756, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
         type: 3}
-      propertyPath: fleeSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6548590727615946962, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
-        type: 3}
-      propertyPath: aggressionMultiplier
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6548590727615946962, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
-        type: 3}
-      propertyPath: fleeTime
-      value: 1
+      propertyPath: foodValue
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8005108841018319386, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
         type: 3}
@@ -108,6 +98,26 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6548590727615946962, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
+        type: 3}
+      propertyPath: fleeSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548590727615946962, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
+        type: 3}
+      propertyPath: aggressionMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548590727615946962, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
+        type: 3}
+      propertyPath: fleeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205786504786123978, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
+        type: 3}
+      propertyPath: m_Radius
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3563972273706698043, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
         type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -117,11 +127,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 1.6666666
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205786504786123978, guid: 5db11a1b2f8c54648be5a5c8e8c011f8,
-        type: 3}
-      propertyPath: m_Radius
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db11a1b2f8c54648be5a5c8e8c011f8, type: 3}

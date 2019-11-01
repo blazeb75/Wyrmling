@@ -40,13 +40,15 @@ public class Movement : MonoBehaviour
     void RotateTowardsMouse()
     {        
         currentRotationSpeed = rotationSpeed * Time.deltaTime;
-        //Reduce speed if the remaining angle is small
+        //Check the angle; slow down rotation if the angle is small
+        //This creates a smoother-looking rotation
         float angleToMouse = Vector3.SignedAngle(transform.up, PlayerManager.instance.TargetPosition - transform.position, transform.forward);
         if (Mathf.Abs(angleToMouse) < stoppingRotationDistance)
         {
             currentRotationSpeed *= angleToMouse / stoppingRotationDistance;
         }
         //Ensure the rotation is negative if appropriate
+        //Without this check, the dragon will only turn right.
         else if (angleToMouse < 0) currentRotationSpeed *= -1f;
         //Actually rotate
         transform.Rotate(0,0,currentRotationSpeed);
@@ -57,6 +59,7 @@ public class Movement : MonoBehaviour
         currentSpeed = moveSpeed * Time.deltaTime * transform.localScale.y;
         Vector3 direction = PlayerManager.instance.headForward;
         //If the target is behind the nose, reverse towards it
+        //Without this, the dragon will end up moving away from and subsequently circling its target
         if(Vector3.Distance(transform.position, PlayerManager.instance.TargetPosition) < Vector3.Distance(transform.position, nose.transform.position))
         {
             currentSpeed *= -0.5f;
@@ -64,6 +67,7 @@ public class Movement : MonoBehaviour
         }
 
         //If close to target, slow down to stop
+        //This creates a more natural-looking movement.
         float noseDistance = Vector3.Distance(nose.transform.position, PlayerManager.instance.TargetPosition);
         if (noseDistance < aggressiveStoppingDistance * transform.localScale.y)
         {
@@ -78,7 +82,7 @@ public class Movement : MonoBehaviour
             //Sleep if very close
             if (noseDistance < 0.05f) return;
         }
-        //Check collision       
+        //Check collision. Do not move if collision is detected.
         if (col.Cast(direction, collisionFilter, hits, currentSpeed) != 0)
         {
             return;
