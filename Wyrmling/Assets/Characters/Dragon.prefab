@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4463643038380748316}
   - component: {fileID: 973241706973736316}
   - component: {fileID: 2555796546398628976}
+  - component: {fileID: 1273939087606704071}
   m_Layer: 8
   m_Name: Back Legs
   m_TagString: Untagged
@@ -123,6 +124,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.68, y: 0.84}
   m_EdgeRadius: 0
+--- !u!114 &1273939087606704071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823546525214401646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &2530131218940705092
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +150,7 @@ GameObject:
   - component: {fileID: 8637072746727064538}
   - component: {fileID: 8393947763073388758}
   - component: {fileID: 7769373621147677132}
+  - component: {fileID: 2982360043362063401}
   m_Layer: 8
   m_Name: Tail
   m_TagString: Untagged
@@ -246,6 +262,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.68, y: 0.72}
   m_EdgeRadius: 0
+--- !u!114 &2982360043362063401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530131218940705092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &4542126764244016999
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8476029409737412390}
   - component: {fileID: 7014555470061365858}
+  - component: {fileID: 8328865391538700276}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -331,6 +362,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8328865391538700276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542126764244016999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &4943859690458198238
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6136703622374672838}
   - component: {fileID: 7656732840151184755}
+  - component: {fileID: 7438834292134173164}
   m_Layer: 8
   m_Name: Left Wing
   m_TagString: Untagged
@@ -443,6 +489,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7438834292134173164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024896431968904983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &6299447563727544884
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +515,7 @@ GameObject:
   - component: {fileID: 2616842106907532067}
   - component: {fileID: 3679457951316227259}
   - component: {fileID: 2951616954631793272}
+  - component: {fileID: 8546745856100887012}
   m_Layer: 8
   m_Name: Abdomin
   m_TagString: Untagged
@@ -569,6 +630,20 @@ PolygonCollider2D:
       - {x: -0.26, y: -0.56}
       - {x: 0.26, y: -0.56}
       - {x: 0.26, y: 0}
+--- !u!114 &8546745856100887012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299447563727544884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &6660980484087289398
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6668371565596173727}
   - component: {fileID: 4252199069093780882}
+  - component: {fileID: 3576068578488331821}
   m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
@@ -787,6 +863,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3576068578488331821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668371565596173724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &6668371566575714782
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3292145064575371350}
   - component: {fileID: 8554940403550941685}
+  - component: {fileID: 8199179065714792249}
   m_Layer: 8
   m_Name: Right Wing
   m_TagString: Untagged
@@ -1049,6 +1140,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8199179065714792249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065747057029582580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &8273127652200768152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1196,7 @@ GameObject:
   - component: {fileID: 97907085879433569}
   - component: {fileID: 102183363001384304}
   - component: {fileID: 2075066567263649993}
+  - component: {fileID: 9133044772979876250}
   m_Layer: 8
   m_Name: Tail Tip
   m_TagString: Untagged
@@ -1201,6 +1307,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.52, y: 1.12}
   m_EdgeRadius: 0
+--- !u!114 &9133044772979876250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612519378409155564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b480d322e56ccd64e980cef7a9101e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 0.6132076, g: 0, b: 0, a: 1}
+  deathColor: {r: 0.3301887, g: 0.0015574975, b: 0.0015574975, a: 1}
 --- !u!1 &8790710275221498863
 GameObject:
   m_ObjectHideFlags: 0

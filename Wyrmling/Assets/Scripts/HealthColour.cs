@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Renderer))]
 public class HealthColour : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class HealthColour : MonoBehaviour
 
     private void Awake()
     {
-        health = GetComponent<Health>();
+        health = transform.GetComponentInParent<Health>();        
         render = GetComponent<Renderer>();
     }
 

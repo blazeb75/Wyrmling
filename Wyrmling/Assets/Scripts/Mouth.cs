@@ -46,6 +46,10 @@ public class Mouth : MonoBehaviour
             {
                 state = MouthState.Firebreathing;
             }
+            else
+            {
+                state = MouthState.Idle;
+            }
         }
         else
         {

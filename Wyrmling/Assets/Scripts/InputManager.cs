@@ -36,7 +36,10 @@ public class InputManager : MonoBehaviour
     }
     private void Start()
     {
-        lastMousePosition = PlayerManager.instance.nose.transform.position;
+        if (PlayerManager.instance != null)
+            lastMousePosition = PlayerManager.instance.nose.transform.position;
+        else
+            lastMousePosition = Vector2.zero;
     }
 
     // Update is called once per frame
