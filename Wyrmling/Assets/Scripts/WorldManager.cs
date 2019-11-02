@@ -6,9 +6,14 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager instance;
 
+    [Header("Inspector variables")]
     [SerializeField] Biome[] biomes;
+    [Tooltip("The number of worldspace units a biome encompasses on each axis")]
     [SerializeField] float biomeSize = 50;
+    [Header("Runtime variables - Do not edit")]
+    [Tooltip("The existing biome instances")]
     [SerializeField] List<WorldTile> spawnedBiomes;
+    [Tooltip("The locations the player has visited, which therefor already have adjacent biomes generated")]
     [SerializeField] List<Vector2> visitedPositions;
 
     List<Biome> validBiomes;
@@ -116,7 +121,7 @@ public class WorldManager : MonoBehaviour
     
     void SpawnBiome(Vector2 position)
     {
-        //Debug.Log("Spawning biome at " + position);
+        //Choose a random biome
         validBiomes.Clear();
         weights.Clear();
         foreach(Biome biome in biomes)
@@ -128,7 +133,7 @@ public class WorldManager : MonoBehaviour
             }
         }
 
-        //Spawn a biome
+        //Spawn the biome
         Vector3 pos = new Vector3(position.x * biomeSize, position.y * biomeSize, 0);
         int index = GetRandomWeightedIndex(weights.ToArray());
 
